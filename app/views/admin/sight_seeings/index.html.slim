@@ -1,0 +1,17 @@
+h1 Locations
+
+= link_to 'Cities', admin_country_cities_path(@country)
+br
+
+= link_to 'New location', new_admin_country_city_sight_seeing_path
+br
+
+br
+
+- if @sight_seeings.any?
+  ul
+    - @sight_seeings.each do |sight_seeing|
+      li #{sight_seeing.name}
+
+- else
+  p There are no sight seeings for this city.

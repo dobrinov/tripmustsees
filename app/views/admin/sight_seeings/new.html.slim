@@ -1,0 +1,12 @@
+h1 New sight seeing
+
+= link_to 'Cities list', admin_country_cities_path(@country)
+
+br
+br
+
+= form_for [:admin, :country, :city, @sight_seeing] do |sight_seeing_form|
+  = sight_seeing_form.label :name
+  = sight_seeing_form.text_field :name
+
+  = sight_seeing_form.submit

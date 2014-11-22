@@ -1,0 +1,12 @@
+h1 New city
+
+= link_to 'Cities list', admin_country_cities_path(@country)
+
+br
+br
+
+= form_for [:admin, :country, @city] do |city_form|
+  = city_form.label :name
+  = city_form.text_field :name
+
+  = city_form.submit

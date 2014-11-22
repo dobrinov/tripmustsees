@@ -1,0 +1,17 @@
+h1 Cities
+
+= link_to 'Countries', admin_countries_path
+br
+
+= link_to 'New city', new_admin_country_city_path
+br
+
+br
+
+- if @cities.any?
+  ul
+    - @cities.each do |city|
+      li #{city.name} (#{link_to('locations', admin_country_city_sight_seeings_path(@country, city))})
+
+- else
+  p There are no cities for this country.

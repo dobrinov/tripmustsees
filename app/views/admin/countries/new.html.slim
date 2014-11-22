@@ -1,1 +1,12 @@
 h1 New country
+
+= link_to 'Countries list', admin_countries_path
+
+br
+br
+
+= form_for [:admin, @country] do |country_form|
+  = country_form.label :name
+  = country_form.text_field :name
+
+  = country_form.submit

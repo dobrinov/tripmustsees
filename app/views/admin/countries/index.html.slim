@@ -1,1 +1,14 @@
 h1 Countries
+
+= link_to 'New country', new_admin_country_path
+
+br
+br
+
+- if @countries.any?
+  ul
+    - @countries.each do |country|
+      li #{country.name} (#{link_to('cities', admin_country_cities_path(country))})
+
+- else
+  p There are no countries in the database.
