@@ -6,6 +6,8 @@ Rails.application.routes.draw do
         resources :sight_seeings
       end
     end
+
+    root to: 'countries#index'
   end
 
 end
