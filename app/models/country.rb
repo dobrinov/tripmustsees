@@ -1,5 +1,9 @@
 class Country < ActiveRecord::Base
 
-  has_many :cities
+  # Associations
+  has_many :cities, dependent: :destroy
+
+  # Validations
+  validates :name, presence: true
 
 end
