@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :countries do
-      resources :cities do
+    resources :countries, only: [:index, :new, :create] do
+      resources :cities, only: [:index, :new, :create] do
         resources :sight_seeings
       end
     end
