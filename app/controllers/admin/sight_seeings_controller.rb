@@ -32,9 +32,17 @@ module Admin
     end
 
     def edit
+      @sight_seeing = SightSeeing.find(params[:id])
     end
 
     def update
+      @sight_seeing = SightSeeing.find(params[:id])
+
+      if @sight_seeing.update(sight_seeing_params)
+        redirect_to admin_country_city_sight_seeings_path(@country, @city)
+      else
+        render :edit
+      end
     end
 
     def destroy

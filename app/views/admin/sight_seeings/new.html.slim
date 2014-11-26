@@ -5,8 +5,4 @@ h1 New sight seeing
 br
 br
 
-= form_for [:admin, :country, :city, @sight_seeing] do |sight_seeing_form|
-  = sight_seeing_form.label :name
-  = sight_seeing_form.text_field :name
-
-  = sight_seeing_form.submit
+= render 'form', { country: @country, city: @city, sight_seeing: @sight_seeing }

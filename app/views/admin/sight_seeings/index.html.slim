@@ -11,7 +11,7 @@ br
 - if @sight_seeings.any?
   ul
     - @sight_seeings.each do |sight_seeing|
-      li #{sight_seeing.name}
+      li #{sight_seeing.name} (#{link_to 'edit', edit_admin_country_city_sight_seeing_path(@country, @city, sight_seeing) })
 
 - else
   p There are no sight seeings for this city.
