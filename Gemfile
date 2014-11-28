@@ -17,6 +17,10 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem "codeclimate-test-reporter", require: nil
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
