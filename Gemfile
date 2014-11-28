@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'jquery-rails'
+gem "factory_girl_rails", "~> 4.0"
 
 group :development do
   gem 'spring'

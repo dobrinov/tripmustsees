@@ -13,6 +13,7 @@ module Admin
     end
 
     def show
+      @sight_seeing = SightSeeing.find(params[:id])
     end
 
     def new
@@ -46,6 +47,10 @@ module Admin
     end
 
     def destroy
+      @sight_seeing = SightSeeing.find(params[:id])
+      @sight_seeing.destroy
+
+      redirect_to admin_country_city_sight_seeings_path(@country, @city)
     end
 
     private
