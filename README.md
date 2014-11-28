@@ -1,4 +1,4 @@
-== Trip Must Sees
+# Trip Must Sees
 
 [![Code Climate](https://codeclimate.com/github/dobrinov/tripmustsees/badges/gpa.svg)](https://codeclimate.com/github/dobrinov/tripmustsees)
 
