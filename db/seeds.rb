@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Create SightSeeingCategories
+puts "Creating SightSeeingCategories ..."
+if SightSeeingCategory.any?
+  puts "SightSeeingCategories already exist. Skipping..."
+else
+  sight_seeing_categories = %w{Museum Gallery Landmark Palace}
+  sight_seeing_categories.each { |sc| SightSeeingCategory.create! }
+  puts "#{sight_seeing_categories.count} SightSeeingCategories added to the database."
+end
