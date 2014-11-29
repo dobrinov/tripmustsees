@@ -18,6 +18,8 @@ RSpec.describe Admin::CountriesController, :type => :controller do
 
 
   describe 'GET new' do
+    let(:country) { build(:country) }
+
     it "assigns @country" do
       get :new
       expect(assigns(:country)).to be_a_new(Country)
@@ -31,29 +33,27 @@ RSpec.describe Admin::CountriesController, :type => :controller do
 
 
   describe 'POST create' do
+    let(:country) { build(:country) }
+
     it "assigns @country" do
-      post :create
+      post :create, country: country.attributes
       expect(assigns(:country)).to be_instance_of(Country)
     end
 
     context "when valid" do
-      before { allow_any_instance_of(Country).to receive(:valid?).and_return(true) }
-
       it "creates a new City" do
-        expect { post :create }.to change(Country, :count).by(1)
+        expect { post :create, country: country.attributes }.to change(Country, :count).by(1)
       end
 
       it "is redirect" do
-        post :create
+        post :create, country: country.attributes
         expect(response).to redirect_to admin_countries_path
       end
     end
 
     context "when invalid" do
-      before { allow_any_instance_of(Country).to receive(:valid?).and_return(false) }
-
       it "is successful" do
-        post :create
+        post :create, country: {}
         expect(response).to be_success
       end
     end

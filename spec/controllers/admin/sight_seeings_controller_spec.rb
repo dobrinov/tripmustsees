@@ -4,21 +4,6 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
 
   let(:country) { create(:country) }
   let(:city) { create(:city) }
-  let(:sight_seeing) { create(:sight_seeing) }
-
-  let(:valid_attributes) {
-    {
-      name: 'Name',
-      latitude:   30.00,
-      longitude: -30.00
-    }
-  }
-
-  let(:invalid_attributes) {
-    {
-      name: ''
-    }
-  }
 
   describe 'GET index' do
     let(:sight_seeings) { FactoryGirl.create_list(:sight_seeing, 3, city: city) }
@@ -45,6 +30,8 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
   end
 
   describe 'GET show' do
+    let(:sight_seeing) { create(:sight_seeing) }
+
     it "assigns @sight_seeing" do
       get :show, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
       expect(assigns(:sight_seeing)).to eq(sight_seeing)
@@ -57,6 +44,8 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
   end
 
   describe 'GET new' do
+    let(:sight_seeing) { build(:sight_seeing) }
+
     it "assigns @sight_seeing" do
       get :new, { country_id: country.id, city_id: city.id }
       expect(assigns(:sight_seeing)).to be_a_new(SightSeeing)
@@ -69,43 +58,47 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
   end
 
   describe 'POST create' do
+    let(:sight_seeing) { build(:sight_seeing) }
+
     it "assigns @country" do
-      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:country)).to be_instance_of(Country)
     end
 
     it "assigns @city" do
-      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:city)).to be_instance_of(City)
     end
 
     it "assigns @sight_seeing" do
-      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:sight_seeing)).to be_a(SightSeeing)
     end
 
     context "when valid" do
       it "creates a new SightSeeing" do
         expect do
-          post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+          post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
         end.to change(SightSeeing, :count).by(1)
       end
 
       it "is redirect" do
-        post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+        post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
         expect(response).to redirect_to admin_country_city_sight_seeings_path(country, city)
       end
     end
 
     context "when invalid" do
       it "is successful" do
-        post :create, { country_id: country.id, city_id: city.id, sight_seeing: invalid_attributes }
+        post :create, { country_id: country.id, city_id: city.id, sight_seeing: {} }
         expect(response).to be_success
       end
     end
   end
 
   describe 'GET edit' do
+    let!(:sight_seeing) { create(:sight_seeing) }
+
     it "assigns @sight_seeing" do
       get :edit, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
       expect(assigns(:sight_seeing)).to eq(sight_seeing)
@@ -119,25 +112,26 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
 
   describe 'PATCH update' do
     let!(:sight_seeing) { create(:sight_seeing) }
+    let(:invalid_attributes) { { name: '' } }
 
     it "assigns @country" do
-      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
+      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:country)).to be_instance_of(Country)
     end
 
     it "assigns @city" do
-      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
+      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:city)).to be_instance_of(City)
     end
 
     it "assigns @sight_seeing" do
-      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
+      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:sight_seeing)).to be_a(SightSeeing)
     end
 
     context "when valid" do
       it "is redirect" do
-        patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: valid_attributes }
+        patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
         expect(response).to redirect_to admin_country_city_sight_seeings_path(country, city)
       end
     end
