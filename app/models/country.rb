@@ -7,5 +7,6 @@ class Country < ActiveRecord::Base
   validates :name, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
+  validates :default_zoom_level, presence: true
 
 end

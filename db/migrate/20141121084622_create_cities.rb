@@ -5,6 +5,7 @@ class CreateCities < ActiveRecord::Migration
       t.integer :country_id
       t.float :latitude
       t.float :longitude
+      t.integer :default_zoom_level
 
       t.timestamps
     end

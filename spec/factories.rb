@@ -4,12 +4,14 @@ FactoryGirl.define do
     name "Bulgaria"
     latitude 42.75
     longitude 25.50
+    default_zoom_level 5
   end
 
   factory :city do
     name "Sofia"
     latitude 42.70
     longitude 23.33
+    default_zoom_level 8
 
     country
   end

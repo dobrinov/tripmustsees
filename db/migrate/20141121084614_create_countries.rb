@@ -4,6 +4,7 @@ class CreateCountries < ActiveRecord::Migration
       t.string :name
       t.float :latitude
       t.float :longitude
+      t.integer :default_zoom_level
 
       t.timestamps
     end

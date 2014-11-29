@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
     t.integer  "country_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "default_zoom_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "default_zoom_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
