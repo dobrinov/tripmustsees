@@ -29,6 +29,7 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
     end
   end
 
+
   describe 'GET show' do
     let(:sight_seeing) { create(:sight_seeing) }
 
@@ -42,6 +43,7 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
       expect(response).to be_success
     end
   end
+
 
   describe 'GET new' do
     let(:sight_seeing) { build(:sight_seeing) }
@@ -144,6 +146,7 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
     end
   end
 
+
   describe 'DELETE destroy' do
     let!(:sight_seeing) { create(:sight_seeing) }
 
@@ -173,5 +176,4 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
       expect(response).to redirect_to admin_country_city_sight_seeings_path(country, city)
     end
   end
-
 end

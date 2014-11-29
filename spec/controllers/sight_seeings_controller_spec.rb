@@ -9,5 +9,4 @@ RSpec.describe SightSeeingsController, :type => :controller do
       expect(assigns(:sight_seeing)).to eq(sight_seeing)
     end
   end
-
 end
