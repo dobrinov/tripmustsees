@@ -3,6 +3,8 @@ class CreateCities < ActiveRecord::Migration
     create_table :cities do |t|
       t.string :name
       t.integer :country_id
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

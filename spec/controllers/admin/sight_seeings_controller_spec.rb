@@ -7,11 +7,17 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
   let(:sight_seeing) { create(:sight_seeing) }
 
   let(:valid_attributes) {
-    { name: 'Name' }
+    {
+      name: 'Name',
+      latitude:   30.00,
+      longitude: -30.00
+    }
   }
 
   let(:invalid_attributes) {
-    { name: '' }
+    {
+      name: ''
+    }
   }
 
   describe 'GET index' do
@@ -64,18 +70,18 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
 
   describe 'POST create' do
     it "assigns @country" do
-      post :create, { country_id: country.id, city_id: city.id }
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
       expect(assigns(:country)).to be_instance_of(Country)
     end
 
     it "assigns @city" do
-      post :create, { country_id: country.id, city_id: city.id }
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
       expect(assigns(:city)).to be_instance_of(City)
     end
 
     it "assigns @sight_seeing" do
-      post :create, { country_id: country.id, city_id: city.id }
-      expect(assigns(:sight_seeing)).to be_a_new(SightSeeing)
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: valid_attributes }
+      expect(assigns(:sight_seeing)).to be_a(SightSeeing)
     end
 
     context "when valid" do
