@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     root to: 'countries#index'
   end
 
-  resources :sight_seeings, only: [:show]
+  get ':country_slug/:city_slug/:sight_seeing_slug' => 'sight_seeings#show',
+        constraints: {
+          country_slug:      /[a-z_]+/,
+          city_slug:         /[a-z_]+/,
+          sight_seeing_slug: /[a-z_]+/,
+        }, as: 'sight_seeing'
 
   get 'landingpage' => 'static_pages#landingpage'
   get 'about'       => 'static_pages#about'
