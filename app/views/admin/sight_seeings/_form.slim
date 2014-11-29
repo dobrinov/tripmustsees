@@ -1,12 +1,24 @@
 = form_for [:admin, country, city, sight_seeing] do |sight_seeing_form|
   = label_tag :city_name, 'City name'
-  = text_field_tag :city_name, sight_seeing.city.name, disabled: true
+  = text_field_tag :city_name, city.name, disabled: true
 
   br
   br
 
   = sight_seeing_form.label :name
   = sight_seeing_form.text_field :name
+
+  br
+  br
+
+  = sight_seeing_form.label :latitude
+  = sight_seeing_form.text_field :latitude
+
+  br
+  br
+
+  = sight_seeing_form.label :longitude
+  = sight_seeing_form.text_field :longitude
 
   br
   br
