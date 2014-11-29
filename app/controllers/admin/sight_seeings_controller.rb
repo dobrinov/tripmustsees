@@ -8,7 +8,7 @@ module Admin
       @sight_seeings = SightSeeing.all
 
       if @city.present?
-        @sight_seeings.where(city: @city)
+        @sight_seeings = @sight_seeings.where(city: @city)
       end
     end
 
@@ -57,7 +57,7 @@ module Admin
 
     def sight_seeing_params
       if params[:sight_seeing].present?
-        params[:sight_seeing].permit(:name, :latitude, :longitude)
+        params[:sight_seeing].permit(:name, :slug, :latitude, :longitude)
       else
         {}
       end

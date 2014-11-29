@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Admin::CountriesController, :type => :controller do
 
+  let(:invalid_attributes) do
+    country.attributes.merge(latitude: nil)
+  end
+
   describe 'GET index' do
     let(:countries) { FactoryGirl.create_list(:country, 3) }
 
@@ -53,7 +57,7 @@ RSpec.describe Admin::CountriesController, :type => :controller do
 
     context "when invalid" do
       it "is successful" do
-        post :create, country: {}
+        post :create, country: invalid_attributes
         expect(response).to be_success
       end
     end

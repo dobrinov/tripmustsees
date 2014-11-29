@@ -4,6 +4,10 @@ RSpec.describe Admin::CitiesController, :type => :controller do
 
   let(:country) { create(:country) }
 
+  let(:invalid_attributes) do
+    city.attributes.merge(latitude: nil)
+  end
+
   describe 'GET index' do
     let(:cities) { FactoryGirl.create_list(:city, 3, country: country) }
 
@@ -70,7 +74,7 @@ RSpec.describe Admin::CitiesController, :type => :controller do
 
     context "when invalid" do
       it "is successful" do
-        post :create, { country_id: country.id, city: {} }
+        post :create, { country_id: country.id, city: invalid_attributes }
         expect(response).to be_success
       end
     end

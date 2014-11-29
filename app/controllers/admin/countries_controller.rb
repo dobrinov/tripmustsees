@@ -23,7 +23,7 @@ module Admin
 
     def country_params
       if params[:country].present?
-        params[:country].permit(:name, :latitude, :longitude, :default_zoom_level)
+        params[:country].permit(:name, :slug, :latitude, :longitude, :default_zoom_level)
       else
         {}
       end

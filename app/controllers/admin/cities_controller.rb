@@ -31,7 +31,7 @@ module Admin
 
     def city_params
       if params[:city].present?
-        params[:city].permit(:name, :latitude, :longitude, :default_zoom_level)
+        params[:city].permit(:name, :slug, :latitude, :longitude, :default_zoom_level)
       else
         {}
       end

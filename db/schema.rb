@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
+    t.string   "slug"
     t.integer  "country_id"
     t.float    "latitude"
     t.float    "longitude"
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
+    t.string   "slug"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "default_zoom_level"
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
 
   create_table "locations", force: true do |t|
     t.string   "name"
+    t.string   "slug"
     t.string   "type"
     t.integer  "city_id"
     t.integer  "sight_seeing_category_id"
