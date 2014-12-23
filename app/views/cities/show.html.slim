@@ -1,1 +1,4 @@
-h1 City page (#{@city.name})
+h1 #{@city.name}, #{@city.country.name}
+
+div.map
+  div.map__canvas data-path="" data-lat="-34.397" data-lng="150.644" data-zoom="6"
