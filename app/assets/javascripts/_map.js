@@ -49,7 +49,7 @@
                       };
 
     self.map = new google.maps.Map(document.getElementsByClassName(self.options.selectors.canvas.replace('.', ''))[0], map_options);
-  }
+  };
 
   $.fn[pluginName] = function(options){
     return this.each(function(){
@@ -57,7 +57,7 @@
         $.data(this, 'plugin_' + pluginName, new Map(this, options));
       }
     });
-  }
+  };
 
 })(jQuery, window, document);
 
