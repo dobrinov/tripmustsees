@@ -1,0 +1,32 @@
+= form_for [:admin, country] do |country_form|
+  = country_form.label :name
+  = country_form.text_field :name
+
+  br
+  br
+
+  = country_form.label :slug
+  = country_form.text_field :slug
+
+  br
+  br
+
+  = country_form.label :latitude
+  = country_form.text_field :latitude
+
+  br
+  br
+
+  = country_form.label :longitude
+  = country_form.text_field :longitude
+
+  br
+  br
+
+  = country_form.label :default_zoom_level
+  = country_form.text_field :default_zoom_level
+
+  br
+  br
+
+  = country_form.submit

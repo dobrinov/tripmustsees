@@ -62,4 +62,47 @@ RSpec.describe Admin::CountriesController, :type => :controller do
       end
     end
   end
+
+
+  describe 'GET edit' do
+    let(:country) { create(:country) }
+
+    it "assigns @country" do
+      get :edit, id: country.id
+      expect(assigns(:country)).to eq(country)
+    end
+
+    it "is successful" do
+      get :edit, id: country.id
+      expect(response).to be_success
+    end
+  end
+
+
+  describe 'PUT update' do
+    let!(:country) { create(:country) }
+
+    it "assigns @country" do
+      put :update, id: country.id
+      expect(assigns(:country)).to eq(country)
+    end
+
+    context "when valid" do
+      it "redirects to countries index" do
+        put :update, id: country.id
+        expect(response).to redirect_to(admin_countries_path)
+      end
+    end
+
+    context "when invalid" do
+      before do
+        allow_any_instance_of(Country).to receive(:valid?).and_return(false)
+      end
+
+      it "renders edit view" do
+        put :update, id: country.id
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

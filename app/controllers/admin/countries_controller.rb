@@ -19,6 +19,20 @@ module Admin
       end
     end
 
+    def edit
+      @country = Country.find(params[:id])
+    end
+
+    def update
+      @country = Country.find(params[:id])
+
+      if @country.update(country_params)
+        redirect_to admin_countries_path
+      else
+        render :edit
+      end
+    end
+
     private
 
     def country_params
