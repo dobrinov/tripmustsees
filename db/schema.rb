@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141121084666) do
     t.integer  "sight_seeing_category_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "default_zoom_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

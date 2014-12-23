@@ -24,6 +24,7 @@ FactoryGirl.define do
     slug
     latitude 42.695755
     longitude 23.332788
+    default_zoom_level 14
 
     city
     sight_seeing_category
@@ -39,6 +40,7 @@ FactoryGirl.define do
     slug
     latitude 12.34
     longitude -12.34
+    default_zoom_level 14
 
     city
   end

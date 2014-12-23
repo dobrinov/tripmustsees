@@ -8,6 +8,7 @@ class CreateLocations < ActiveRecord::Migration
       t.integer :sight_seeing_category_id
       t.float :latitude
       t.float :longitude
+      t.integer :default_zoom_level
 
       t.timestamps
     end

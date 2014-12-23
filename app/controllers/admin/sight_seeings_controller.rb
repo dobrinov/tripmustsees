@@ -57,7 +57,7 @@ module Admin
 
     def sight_seeing_params
       if params[:sight_seeing].present?
-        params[:sight_seeing].permit(:name, :slug, :latitude, :longitude)
+        params[:sight_seeing].permit(:name, :slug, :latitude, :longitude, :default_zoom_level)
       else
         {}
       end
