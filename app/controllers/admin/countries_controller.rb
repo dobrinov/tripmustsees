@@ -5,6 +5,10 @@ module Admin
       @countries = Country.all
     end
 
+    def show
+      @country = Country.find(params[:id])
+    end
+
     def new
       @country = Country.new
     end

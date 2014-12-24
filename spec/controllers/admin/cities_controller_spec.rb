@@ -29,6 +29,26 @@ RSpec.describe Admin::CitiesController, :type => :controller do
   end
 
 
+  describe 'GET show' do
+    let!(:city) { create(:city) }
+
+    it "assigns @country" do
+      get :show, { country_id: country.id, id: city.id }
+      expect(assigns(:country)).to eq(country)
+    end
+
+    it "assigns @city" do
+      get :show, { country_id: country.id, id: city.id }
+      expect(assigns(:city)).to eq(city)
+    end
+
+    it "is successful" do
+      get :show, { country_id: country.id, id: city.id }
+      expect(response).to be_success
+    end
+  end
+
+
   describe 'GET new' do
     let(:city) { build(:city) }
 
