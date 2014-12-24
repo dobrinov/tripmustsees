@@ -1,5 +1,7 @@
 class CitiesController < ApplicationController
 
+  before_action :load_map_javascript
+
   def show
     @city = City.includes(:country)
                 .where(slug:              params[:city_slug])

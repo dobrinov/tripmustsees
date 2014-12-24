@@ -1,5 +1,7 @@
 class SightSeeingsController < ApplicationController
 
+  before_action :load_map_javascript
+
   def show
     @sight_seeing = SightSeeing.includes(:city => :country)
                                .where(             slug: params[:sight_seeing_slug]  )

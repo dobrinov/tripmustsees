@@ -7,6 +7,8 @@ html class="no-js"
 
     = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = head_javascript_includes
+
     = csrf_meta_tags
 
     title Tripmustsees
@@ -14,5 +16,4 @@ html class="no-js"
   body
     = yield
 
-  / Load additional JS.
-  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyB_h7Z3zxzpXQy7MmX_UPcHHez_vdf8z1w", media: "all"
+    = body_javascript_includes
