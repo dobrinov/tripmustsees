@@ -1,10 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method \
-    :additional_head_javascripts,
-    :additional_body_javascripts
-
   private
 
   def load_additional_head_javascript(script_attributes)
