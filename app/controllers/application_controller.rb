@@ -17,14 +17,6 @@ class ApplicationController < ActionController::Base
     @_additional_body_javascripts << script_attributes
   end
 
-  def additional_head_javascripts
-    @_additional_head_javascripts || []
-  end
-
-  def additional_body_javascripts
-    @_additional_body_javascripts || []
-  end
-
   def load_map_javascript
     load_additional_head_javascript(
       {
