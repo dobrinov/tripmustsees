@@ -65,7 +65,3 @@
 $(document).ready(function(){
   $('.map').map();
 });
-
-$(document).on('page:load', function(){
-  $('.map').map();
-});

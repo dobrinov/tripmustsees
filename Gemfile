@@ -9,7 +9,9 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
+gem 'bootstrap-sass', '~> 3.3.1'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem "factory_girl_rails", "~> 4.0"
 gem 'carrierwave'
 
