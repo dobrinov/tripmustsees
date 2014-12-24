@@ -3,10 +3,15 @@ require "rails_helper"
 RSpec.describe CountriesController, :type => :controller do
 
   describe 'GET show' do
+    let(:country) { create(:country) }
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show, country_slug: country.slug
+    end
+
     context "when Country exist" do
       it "assigns @country" do
-        country = create(:country)
-
         get :show, country_slug: country.slug
         expect(assigns(:country)).to be_a(Country)
       end

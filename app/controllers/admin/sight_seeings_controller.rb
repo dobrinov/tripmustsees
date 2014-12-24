@@ -4,6 +4,8 @@ module Admin
     before_action :set_country
     before_action :set_city
 
+    before_action :load_map_javascript, except: [:index, :destroy]
+
     def index
       @sight_seeings = SightSeeing.all
 

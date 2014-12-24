@@ -3,11 +3,20 @@ require "rails_helper"
 RSpec.describe CitiesController, :type => :controller do
 
   describe 'GET show' do
+    let(:country) { create(:country) }
+    let(:city)    { create(:city)    }
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show,  {
+                   country_slug: city.country.slug,
+                   city_slug:    city.slug
+                  }
+    end
+
     context "when City exist" do
       it "assigns @city" do
-        city = create(:city)
-
-        get :show, {
+        get :show,  {
                      country_slug: city.country.slug,
                      city_slug:    city.slug
                     }

@@ -46,6 +46,11 @@ RSpec.describe Admin::CitiesController, :type => :controller do
       get :show, { country_id: country.id, id: city.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show, { country_id: country.id, id: city.id }
+    end
   end
 
 
@@ -66,6 +71,11 @@ RSpec.describe Admin::CitiesController, :type => :controller do
       get :new, { country_id: country.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :new, { country_id: country.id }
+    end
   end
 
 
@@ -80,6 +90,11 @@ RSpec.describe Admin::CitiesController, :type => :controller do
     it "assigns @city" do
       post :create, { country_id: country.id, city: city.attributes }
       expect(assigns(:city)).to be_instance_of(City)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      post :create, { country_id: country.id, city: city.attributes }
     end
 
     context "when valid" do
@@ -111,6 +126,11 @@ RSpec.describe Admin::CitiesController, :type => :controller do
         get :edit, { country_id: country.id, id: city.id }
         expect(response).to be_success
       end
+
+      it "loads map script" do
+        expect(controller).to receive(:load_map_javascript)
+        get :edit, { country_id: country.id, id: city.id }
+      end
     end
 
 
@@ -125,6 +145,11 @@ RSpec.describe Admin::CitiesController, :type => :controller do
       it "assigns @city" do
         put :update, { country_id: country.id, id: city.id }
         expect(assigns(:city)).to eq(city)
+      end
+
+      it "loads map script" do
+        expect(controller).to receive(:load_map_javascript)
+        put :update, { country_id: country.id, id: city.id }
       end
 
       context "when valid" do

@@ -46,6 +46,11 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
       get :show, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
+    end
   end
 
 
@@ -60,6 +65,11 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
     it "is successful" do
       get :new, { country_id: country.id, city_id: city.id }
       expect(response).to be_success
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :new, { country_id: country.id, city_id: city.id }
     end
   end
 
@@ -79,6 +89,11 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
     it "assigns @sight_seeing" do
       post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:sight_seeing)).to be_a(SightSeeing)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      post :create, { country_id: country.id, city_id: city.id, sight_seeing: sight_seeing.attributes }
     end
 
     context "when valid" do
@@ -114,6 +129,11 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
       get :edit, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :edit, { country_id: country.id, city_id: city.id, id: sight_seeing.id }
+    end
   end
 
   describe 'PATCH update' do
@@ -133,6 +153,11 @@ RSpec.describe Admin::SightSeeingsController, :type => :controller do
     it "assigns @sight_seeing" do
       patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
       expect(assigns(:sight_seeing)).to be_a(SightSeeing)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      patch :update, { country_id: country.id, city_id: city.id, id: sight_seeing.id, sight_seeing: sight_seeing.attributes }
     end
 
     context "when valid" do
