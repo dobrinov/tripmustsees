@@ -8,6 +8,7 @@ RSpec.describe Admin::CitiesController, :type => :controller do
     city.attributes.merge(latitude: nil)
   end
 
+
   describe 'GET index' do
     let(:cities) { FactoryGirl.create_list(:city, 3, country: country) }
 
@@ -71,6 +72,64 @@ RSpec.describe Admin::CitiesController, :type => :controller do
         expect(response).to redirect_to admin_country_cities_path(country)
       end
     end
+
+
+    describe 'GET edit' do
+      let!(:city) { create(:city) }
+
+      it "assigns @country" do
+        get :edit, { country_id: country.id, id: city.id }
+        expect(assigns(:country)).to eq(country)
+      end
+
+      it "assigns @city" do
+        get :edit, { country_id: country.id, id: city.id }
+        expect(assigns(:city)).to eq(city)
+      end
+
+      it "is successful" do
+        get :edit, { country_id: country.id, id: city.id }
+        expect(response).to be_success
+      end
+    end
+
+
+    describe 'PUT update' do
+      let!(:city) { create(:city) }
+
+      it "assigns @country" do
+        put :update, { country_id: country.id, id: city.id }
+        expect(assigns(:country)).to eq(country)
+      end
+
+      it "assigns @city" do
+        put :update, { country_id: country.id, id: city.id }
+        expect(assigns(:city)).to eq(city)
+      end
+
+      context "when valid" do
+        before do
+          allow_any_instance_of(City).to receive(:valid?).and_return(true)
+        end
+
+        it "redirects to cities index" do
+          put :update, { country_id: country.id, id: city.id }
+          expect(response).to redirect_to(admin_country_cities_path(country))
+        end
+      end
+
+      context "when invalid" do
+        before do
+          allow_any_instance_of(City).to receive(:valid?).and_return(false)
+        end
+
+        it "renders edit" do
+          put :update, { country_id: country.id, id: city.id }
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
 
     context "when invalid" do
       it "is successful" do

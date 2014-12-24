@@ -27,6 +27,20 @@ module Admin
       end
     end
 
+    def edit
+      @city = City.find(params[:id])
+    end
+
+    def update
+      @city = City.find(params[:id])
+
+      if @city.update(city_params)
+        redirect_to admin_country_cities_path(@country)
+      else
+        render :edit
+      end
+    end
+
     private
 
     def city_params

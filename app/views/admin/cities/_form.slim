@@ -1,0 +1,32 @@
+= form_for [:admin, :country, city] do |city_form|
+  = city_form.label :name
+  = city_form.text_field :name
+
+  br
+  br
+
+  = city_form.label :slug
+  = city_form.text_field :slug
+
+  br
+  br
+
+  = city_form.label :latitude
+  = city_form.text_field :latitude
+
+  br
+  br
+
+  = city_form.label :longitude
+  = city_form.text_field :longitude
+
+  br
+  br
+
+  = city_form.label :default_zoom_level
+  = city_form.text_field :default_zoom_level
+
+  br
+  br
+
+  = city_form.submit

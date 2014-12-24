@@ -88,6 +88,10 @@ RSpec.describe Admin::CountriesController, :type => :controller do
     end
 
     context "when valid" do
+      before do
+        allow_any_instance_of(Country).to receive(:valid?).and_return(true)
+      end
+
       it "redirects to countries index" do
         put :update, id: country.id
         expect(response).to redirect_to(admin_countries_path)
