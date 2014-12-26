@@ -16,7 +16,8 @@
         },
         zoom_level: 2,
         lat: 0,
-        lng: 0
+        lng: 0,
+        show_pin: false
       };
 
   function Map(element, options) {
@@ -45,6 +46,7 @@
     var initial_zoom_level = parseInt(self.map.data('zoom')) || self.options.zoom_level;
     var initial_lat = parseFloat(self.map.data('lat')) || self.options.lat;
     var initial_lng = parseFloat(self.map.data('lng')) || self.options.lng;
+    var show_pin = self.map.data('show-pin') || self.options.show_pin;
 
     var map_options = {
                         zoom: initial_zoom_level,
@@ -64,6 +66,10 @@
 
     self.map = new google.maps.Map(document.getElementsByClassName(self.options.selectors.canvas.replace('.', ''))[0], map_options);
 
+    if(show_pin){
+      self.placeMarker(initial_lat, initial_lng);
+    }
+
     google.maps.event.addListener(self.map, 'dragend', function(e) {
       var center = self.map.getCenter();
 
@@ -75,6 +81,14 @@
       self.input_zoom_level.val(self.map.zoom);
     });
   };
+
+  Map.prototype.placeMarker = function(lat, lng){
+    var marker = new google.maps.Marker({
+                                          map:       this.map,
+                                          animation: google.maps.Animation.DROP,
+                                          position:  new google.maps.LatLng(lat, lng)
+                                        });
+  }
 
   $.fn[pluginName] = function(options){
     return this.each(function(){
