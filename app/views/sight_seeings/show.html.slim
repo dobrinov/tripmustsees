@@ -1,7 +1,8 @@
 h1 #{@sight_seeing.name}
 
-/ Move this into helper
-- sight_seeing_map_data_path = sight_seeing_path(country_slug: params[:country_slug], city_slug: params[:city_slug], sight_seeing_slug: params[:sight_seeing_slug])
-
 div.map
-  div.map__canvas data-path="#{sight_seeing_map_data_path}" data-lat="-34.397" data-lng="150.644" data-zoom="6"
+  div.map__canvas {
+                    data-lat="#{@sight_seeing.latitude}"
+                    data-lng="#{@sight_seeing.longitude}"
+                    data-zoom="#{@sight_seeing.default_zoom_level}"
+                  }

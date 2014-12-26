@@ -13,25 +13,15 @@
 
   div.map
     div.map__backsight
-    div.map__canvas data-lat="-34.397" data-lng="150.644" data-zoom="6"
+    div.map__canvas {
+                      data-lat="#{city.latitude}"
+                      data-lng="#{city.longitude}"
+                      data-zoom="#{city.default_zoom_level}"
+                    }
 
-  br
-  br
-
-  = city_form.label :latitude
-  = city_form.text_field :latitude
-
-  br
-  br
-
-  = city_form.label :longitude
-  = city_form.text_field :longitude
-
-  br
-  br
-
-  = city_form.label :default_zoom_level
-  = city_form.text_field :default_zoom_level
+    = city_form.text_field :latitude, class: 'map__input map__input_lat'
+    = city_form.text_field :longitude, class: 'map__input map__input_lng'
+    = city_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
 
   br
   br

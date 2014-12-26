@@ -1,4 +1,8 @@
 h1 #{@country.name}
 
 div.map
-  div.map__canvas data-path="" data-lat="-34.397" data-lng="150.644" data-zoom="6"
+  div.map__canvas {
+                    data-lat="#{@country.latitude}"
+                    data-lng="#{@country.longitude}"
+                    data-zoom="#{@country.default_zoom_level}"
+                  }

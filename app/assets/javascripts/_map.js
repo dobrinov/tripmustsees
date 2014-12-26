@@ -8,9 +8,15 @@
   var pluginName = 'map',
       defaults = {
         selectors: { // BEM
-          container: '.map',
-          canvas: '.map__canvas'
-        }
+          container:        '.map',
+          canvas:           '.map__canvas',
+          input_zoom_level: '.map__input_zoom-level',
+          input_lat:        '.map__input_lat',
+          input_lng:        '.map__input_lng'
+        },
+        zoom_level: 2,
+        lat: 0,
+        lng: 0
       };
 
   function Map(element, options) {
@@ -32,11 +38,19 @@
     self.node = $(self.options.selectors.container);
     self.map = $(self.options.selectors.canvas);
 
+    self.input_zoom_level = $(self.options.selectors.input_zoom_level);
+    self.input_lat = $(self.options.selectors.input_lat);
+    self.input_lng = $(self.options.selectors.input_lng);
+
+    var initial_zoom_level = parseInt(self.map.data('zoom')) || self.options.zoom_level;
+    var initial_lat = parseFloat(self.map.data('lat')) || self.options.lat;
+    var initial_lng = parseFloat(self.map.data('lng')) || self.options.lng;
+
     var map_options = {
-                        zoom: parseInt(self.map.attr('data-zoom')),
+                        zoom: initial_zoom_level,
                         center: {
-                          lat: parseInt(self.map.attr('data-lat')),
-                          lng: parseInt(self.map.attr('data-lng'))
+                          lat: initial_lat,
+                          lng: initial_lng
                         },
                         panControl: false,
                         streetViewControl: false,
@@ -49,6 +63,17 @@
                       };
 
     self.map = new google.maps.Map(document.getElementsByClassName(self.options.selectors.canvas.replace('.', ''))[0], map_options);
+
+    google.maps.event.addListener(self.map, 'dragend', function(e) {
+      var center = self.map.getCenter();
+
+      self.input_lat.val(center.lat());
+      self.input_lng.val(center.lng());
+    });
+
+    google.maps.event.addListener(self.map, 'zoom_changed', function(e) {
+      self.input_zoom_level.val(self.map.zoom);
+    });
   };
 
   $.fn[pluginName] = function(options){
