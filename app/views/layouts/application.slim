@@ -14,6 +14,14 @@ html class="no-js"
     title Tripmustsees
 
   body
-    = yield
+    header
+      .container-fluid
+
+    main
+      .container-fluid
+        = yield
+
+    footer
+      .container-fluid
 
     = body_javascript_includes
