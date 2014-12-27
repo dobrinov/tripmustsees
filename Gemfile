@@ -14,6 +14,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem "factory_girl_rails", "~> 4.0"
+gem 'redirectr', '~> 0.1.0'
 gem 'carrierwave'
 
 group :development do
