@@ -1,9 +1,13 @@
-h1 #{@sight_seeing.name}
+.row
+  .col-md-6
+    div.map
+      div.map__canvas {
+                        data-lat="#{@sight_seeing.latitude}"
+                        data-lng="#{@sight_seeing.longitude}"
+                        data-zoom="#{@sight_seeing.default_zoom_level}"
+                        data-show-pin="true"
+                      }
 
-div.map
-  div.map__canvas {
-                    data-lat="#{@sight_seeing.latitude}"
-                    data-lng="#{@sight_seeing.longitude}"
-                    data-zoom="#{@sight_seeing.default_zoom_level}"
-                    data-show-pin="true"
-                  }
+  .col-md-6
+    h1 = @sight_seeing.name
+    h4 #{@sight_seeing.city.name}, #{@sight_seeing.country.name}

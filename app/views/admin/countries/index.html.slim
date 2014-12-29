@@ -1,14 +1,21 @@
 h1 Countries
 
-= link_to 'New country', new_admin_country_path
-
-br
-br
-
 - if @countries.any?
-  ul
-    - @countries.each do |country|
-      li #{link_to country.name, admin_country_path(country)}
+  div.table-responsive
+    table.table
+      thead
+        tr
+          th Country
+          th Slug
+          th Cities
+      tbody
+        - @countries.each do |country|
+          tr
+            td #{link_to country.name, admin_country_path(country)}
+            td = country.slug
+            td #{link_to country.cities.size, admin_country_cities_path(country)}
 
 - else
-  p There are no countries in the database.
+  p There are no countries.
+
+= link_to 'New country', new_admin_country_path, class: 'btn btn-primary'

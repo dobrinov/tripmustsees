@@ -14,14 +14,17 @@ html class="no-js"
     title Tripmustsees
 
   body
-    header
+    .header
       .container-fluid
+        = link_to root_path, class: 'logo logo_navigation' do
+          = image_tag 'logo_60x60.png', class: 'logo__image'
 
-    main
+    .body
       .container-fluid
         = yield
 
-    footer
+    .footer
       .container-fluid
+        | TripMustSees
 
     = body_javascript_includes

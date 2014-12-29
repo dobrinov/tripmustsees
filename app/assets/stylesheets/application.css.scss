@@ -1,3 +1,6 @@
+// Colors
+@import "palette";
+
 // Compass
 @import "compass";
 
@@ -6,4 +9,8 @@
 @import "bootstrap";
 
 // BEM
+@import "bem/body/**";
+@import "bem/footer/**";
+@import "bem/header/**";
+@import "bem/logo/**";
 @import "bem/map/**";

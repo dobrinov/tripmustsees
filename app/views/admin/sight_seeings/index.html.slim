@@ -1,17 +1,21 @@
-h1 Locations
-
-= link_to 'Cities', admin_country_cities_path(@country)
-br
-
-= link_to 'New location', new_admin_country_city_sight_seeing_path
-br
-
-br
+h1 Sight seeings
 
 - if @sight_seeings.any?
-  ul
-    - @sight_seeings.each do |sight_seeing|
-      li #{sight_seeing.name} (#{link_to 'edit', edit_admin_country_city_sight_seeing_path(@country, @city, sight_seeing) })
+  div.table-responsive
+    table.table
+      thead
+        tr
+          th Location
+          th Slug
+      tbody
+        - @sight_seeings.each do |sight_seeing|
+          tr
+            td = link_to sight_seeing.name, admin_country_city_sight_seeing_path(@country, @city, sight_seeing)
+            td = sight_seeing.slug
 
 - else
-  p There are no sight seeings for this city.
+  p There are no locations.
+
+br
+
+/ = link_to 'New location', new_admin_country_city_sight_seeing_path(@country, @city)
