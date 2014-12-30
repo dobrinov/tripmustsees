@@ -1,11 +1,12 @@
-h1 #{@country.name}
+- content_for(:map) do
+  div.map
+    div.map__canvas {
+                      data-lat="#{@country.latitude}"
+                      data-lng="#{@country.longitude}"
+                      data-zoom="#{@country.default_zoom_level}"
+                    }
 
-div.map
-  div.map__canvas {
-                    data-lat="#{@country.latitude}"
-                    data-lng="#{@country.longitude}"
-                    data-zoom="#{@country.default_zoom_level}"
-                  }
+h1 #{@country.name}
 
 - if @country.cities.any?
   h3 Cities

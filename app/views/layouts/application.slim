@@ -20,11 +20,21 @@ html class="no-js"
           = image_tag 'logo_60x60.png', class: 'logo__image'
 
     .body
-      .container-fluid
-        = yield
+      - if content_for?(:map)
+        .container-fluid
+          .row
+            .side-panel.side-panel_left
+              = yield(:map)
+            .side-panel.side-panel_right
+              .col-xs-12
+                = yield
+              .col-xs-12
+                .footer TripMustSees
 
-    .footer
-      .container-fluid
-        | TripMustSees
+      - else
+        .container-fluid
+          = yield
+        .container-fluid
+          .footer TripMustSees
 
     = body_javascript_includes

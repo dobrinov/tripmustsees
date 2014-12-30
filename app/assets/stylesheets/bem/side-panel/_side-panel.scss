@@ -1,0 +1,15 @@
+.side-panel {
+  @media (max-width: $breakpoint_sm) {
+    & {
+      position: relative;
+    }
+  }
+
+  @media (min-width: $breakpoint_sm) {
+    & {
+      position: fixed;
+      top: 55px;
+      bottom: 0;
+    }
+  }
+}

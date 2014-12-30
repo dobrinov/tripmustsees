@@ -11,13 +11,13 @@
   br
   br
 
-  div.map
-    div.map__backsight
-    div.map__canvas {
-                      data-lat="#{country.latitude}"
-                      data-lng="#{country.longitude}"
-                      data-zoom="#{country.default_zoom_level}"
-                    }
+  .map.map_fixed-height
+    .map__backsight
+    .map__canvas {
+                    data-lat="#{country.latitude}"
+                    data-lng="#{country.longitude}"
+                    data-zoom="#{country.default_zoom_level}"
+                  }
 
     = country_form.text_field :latitude, class: 'map__input map__input_lat'
     = country_form.text_field :longitude, class: 'map__input map__input_lng'

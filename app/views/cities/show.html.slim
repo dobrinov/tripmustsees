@@ -1,9 +1,10 @@
+- content_for(:map) do
+  div.map
+    div.map__canvas {
+                      data-lat="#{@city.latitude}"
+                      data-lng="#{@city.longitude}"
+                      data-zoom="#{@city.default_zoom_level}"
+                    }
+
 h1 = @city.name
 h4 = @city.country.name
-
-div.map
-  div.map__canvas {
-                    data-lat="#{@city.latitude}"
-                    data-lng="#{@city.longitude}"
-                    data-zoom="#{@city.default_zoom_level}"
-                  }

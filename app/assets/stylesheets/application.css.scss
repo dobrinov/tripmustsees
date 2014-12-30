@@ -1,6 +1,9 @@
 // Colors
 @import "palette";
 
+// Responsive
+@import "responsive";
+
 // Compass
 @import "compass";
 
@@ -14,3 +17,4 @@
 @import "bem/header/**";
 @import "bem/logo/**";
 @import "bem/map/**";
+@import "bem/side-panel/**";

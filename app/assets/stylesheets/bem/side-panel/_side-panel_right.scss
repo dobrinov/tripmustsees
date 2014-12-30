@@ -1,0 +1,15 @@
+.side-panel_right {
+  @media (max-width: $breakpoint_sm) {
+    & {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $breakpoint_sm) {
+    & {
+      width: 60%;
+      right: 0;
+      overflow-y: scroll;
+    }
+  }
+}

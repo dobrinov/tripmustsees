@@ -1,0 +1,15 @@
+.side-panel_left {
+  @media (max-width: $breakpoint_sm) {
+    & {
+      display: none;
+    }
+  }
+
+  @media (min-width: $breakpoint_sm) {
+    & {
+      width: 40%;
+      left: 0;
+      border-right: 1px solid #ececec;
+    }
+  }
+}

@@ -17,13 +17,13 @@
   br
   br
 
-  div.map
-    div.map__backsight
-    div.map__canvas {
-                      data-lat="#{sight_seeing.latitude}"
-                      data-lng="#{sight_seeing.longitude}"
-                      data-zoom="#{sight_seeing.default_zoom_level}"
-                    }
+  .map.map_fixed-height
+    .map__backsight
+    .map__canvas {
+                    data-lat="#{sight_seeing.latitude}"
+                    data-lng="#{sight_seeing.longitude}"
+                    data-zoom="#{sight_seeing.default_zoom_level}"
+                  }
 
     = sight_seeing_form.text_field :latitude, class: 'map__input map__input_lat'
     = sight_seeing_form.text_field :longitude, class: 'map__input map__input_lng'
