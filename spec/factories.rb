@@ -35,6 +35,7 @@ FactoryGirl.define do
     name "Cathedral"
   end
 
+
   factory :location do
     name "The center"
     slug
@@ -44,6 +45,12 @@ FactoryGirl.define do
 
     city
   end
+
+
+  factory :image do
+    file { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'images', 'dummy.jpg')) }
+  end
+
 
   sequence :slug do |n|
     "slug_#{(0...12).map { ('a'..'z').to_a[rand(26)] }.join}"

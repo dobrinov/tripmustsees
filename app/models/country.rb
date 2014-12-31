@@ -2,6 +2,7 @@ class Country < ActiveRecord::Base
 
   # Associations
   has_many :cities, dependent: :destroy
+  has_many :images, as: :imageable, dependent: :destroy
 
   # Validations
   validates :name, presence: true
