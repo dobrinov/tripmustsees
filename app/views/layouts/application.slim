@@ -29,12 +29,12 @@ html class="no-js"
               .col-xs-12
                 = yield
               .col-xs-12
-                .footer TripMustSees
+                = render 'shared/footer'
 
       - else
         .container-fluid
           = yield
         .container-fluid
-          .footer TripMustSees
+          = render 'shared/footer'
 
     = body_javascript_includes
