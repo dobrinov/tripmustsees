@@ -1,0 +1,19 @@
+h1 Locations
+
+- if @locations.any?
+  div.table-responsive
+    table.table
+      thead
+        tr
+          th Location
+          th Slug
+      tbody
+        - @locations.each do |location|
+          tr
+            td = link_to location.name, admin_country_city_location_path(@country, @city, location)
+            td = location.slug
+
+- else
+  p There are no locations.
+
+= link_to 'New location', new_admin_country_city_location_path(@country, @city), class: 'btn btn-primary'

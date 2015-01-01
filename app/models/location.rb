@@ -2,6 +2,7 @@ class Location < ActiveRecord::Base
 
   # Associations
   belongs_to :city
+  belongs_to :location_category
   has_many :images, as: :imageable, dependent: :destroy
 
   # Validations

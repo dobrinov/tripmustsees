@@ -13,7 +13,7 @@ h3 Locations
 - if @city.locations.any?
   ul
     - @city.locations.each do |location|
-      li = link_to(location.name, sight_seeing_path(country_slug: @city.country.slug, city_slug: @city.slug, sight_seeing_slug: location.slug))
+      li = link_to(location.name, location_path(country_slug: @city.country.slug, city_slug: @city.slug, location_slug: location.slug))
 
 - else
   p There are no locations in this city.

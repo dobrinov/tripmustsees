@@ -1,9 +1,9 @@
-# Create SightSeeingCategories
-puts "Creating SightSeeingCategories ..."
-if SightSeeingCategory.any?
-  puts "SightSeeingCategories already exist. Skipping..."
+# Create LocationCategories
+puts "Creating LocationCategories ..."
+if LocationCategory.any?
+  puts "LocationCategories already exist. Skipping..."
 else
-  sight_seeing_categories = [
+  location_categories = [
     'Museum',
     'Gallery',
     'Landmark',
@@ -11,6 +11,6 @@ else
     'Cathedral'
   ]
 
-  sight_seeing_categories.each { |sc| SightSeeingCategory.create! }
-  puts "#{sight_seeing_categories.count} SightSeeingCategories added to the database."
+  location_categories.each { |lc| LocationCategory.create!(name: lc) }
+  puts "#{location_categories.count} LocationCategories added to the database."
 end

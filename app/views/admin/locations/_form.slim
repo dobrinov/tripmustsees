@@ -1,0 +1,35 @@
+= form_for [:admin, country, city, location] do |location_form|
+  = label_tag :city_name, 'City name'
+  = text_field_tag :city_name, city.name, disabled: true
+
+  br
+  br
+
+  = location_form.label :name
+  = location_form.text_field :name
+
+  br
+  br
+
+  = location_form.label :slug
+  = location_form.text_field :slug
+
+  br
+  br
+
+  .map.map_fixed-height
+    .map__backsight
+    .map__canvas {
+                    data-lat="#{location.latitude}"
+                    data-lng="#{location.longitude}"
+                    data-zoom="#{location.default_zoom_level}"
+                  }
+
+    = location_form.text_field :latitude, class: 'map__input map__input_lat'
+    = location_form.text_field :longitude, class: 'map__input map__input_lng'
+    = location_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
+
+  br
+  br
+
+  = location_form.submit

@@ -19,7 +19,13 @@ FactoryGirl.define do
     country
   end
 
-  factory :sight_seeing do
+
+  factory :location_category do
+    name "Cathedral"
+  end
+
+
+  factory :location do
     name "St. Alexander Nevsky Cathedral"
     slug
     latitude 42.695755
@@ -27,23 +33,7 @@ FactoryGirl.define do
     default_zoom_level 14
 
     city
-    sight_seeing_category
-  end
-
-
-  factory :sight_seeing_category do
-    name "Cathedral"
-  end
-
-
-  factory :location do
-    name "The center"
-    slug
-    latitude 12.34
-    longitude -12.34
-    default_zoom_level 14
-
-    city
+    location_category
   end
 
 

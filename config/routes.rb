@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :countries, concerns: :imageable, except: [:destroy] do
       resources :cities, concerns: :imageable, except: [:destroy] do
-        resources :sight_seeings, concerns: :imageable
+        resources :locations, concerns: :imageable
       end
     end
 
@@ -29,16 +29,16 @@ Rails.application.routes.draw do
         constraints: {
           country_slug:      /[a-z_]+/,
           city_slug:         /[a-z_]+/
-        }, as: 'cities'
+        }, as: 'city'
 
 
-  # Slug based sight seeing URLs
-  get ':country_slug/:city_slug/:sight_seeing_slug' => 'sight_seeings#show',
+  # Slug based location URLs
+  get ':country_slug/:city_slug/:location_slug' => 'locations#show',
         constraints: {
-          country_slug:      /[a-z_]+/,
-          city_slug:         /[a-z_]+/,
-          sight_seeing_slug: /[a-z_]+/
-        }, as: 'sight_seeing'
+          country_slug:  /[a-z_]+/,
+          city_slug:     /[a-z_]+/,
+          location_slug: /[a-z_]+/
+        }, as: 'location'
 
 
   # Static pages

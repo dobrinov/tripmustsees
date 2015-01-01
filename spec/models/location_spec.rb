@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Location, :type => :model do
 
   describe "#country" do
-    let!(:sight_seeing) { create(:sight_seeing) }
+    let!(:location) { create(:location) }
 
     it "returns Country" do
-      expect(sight_seeing.country).to eq(sight_seeing.city.country)
+      expect(location.country).to eq(location.city.country)
     end
   end
 

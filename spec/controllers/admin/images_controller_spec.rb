@@ -56,29 +56,29 @@ RSpec.describe Admin::ImagesController, :type => :controller do
       end
     end
 
-    context "when SightSeeing image" do
+    context "when Location image" do
       let(:country) { create(:country) }
       let(:city) { create(:city) }
-      let(:imageable) { create(:sight_seeing) }
+      let(:imageable) { create(:location) }
 
       it "assigns @image" do
-        post :create, country_id: country.id, city_id: city.id, sight_seeing_id: imageable.id, image: { file: file_for_upload }
+        post :create, country_id: country.id, city_id: city.id, location_id: imageable.id, image: { file: file_for_upload }
         expect(assigns(:image)).to be_a(Image)
       end
 
       it "creates new Image" do
         expect do
-          post :create, country_id: country.id, city_id: city.id, sight_seeing_id: imageable.id, image: { file: file_for_upload }
+          post :create, country_id: country.id, city_id: city.id, location_id: imageable.id, image: { file: file_for_upload }
         end.to change(Image, :count).by(1)
       end
 
       it "has association from the correct type" do
-        post :create, country_id: country.id, city_id: city.id, sight_seeing_id: imageable.id, image: { file: file_for_upload }
+        post :create, country_id: country.id, city_id: city.id, location_id: imageable.id, image: { file: file_for_upload }
         expect(assigns(:image).imageable).to eq(imageable)
       end
 
       it "is redirects" do
-        post :create, country_id: country.id, city_id: city.id, sight_seeing_id: imageable.id, image: { file: file_for_upload }
+        post :create, country_id: country.id, city_id: city.id, location_id: imageable.id, image: { file: file_for_upload }
         expect(response).to be_redirect
       end
     end

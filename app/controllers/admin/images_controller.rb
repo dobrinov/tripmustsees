@@ -20,11 +20,11 @@ module Admin
     private
 
     def find_imageable
-      if params[:country_id] && params[:city_id] && params[:sight_seeing_id] # SightSeeing
-        SightSeeing.find(params[:sight_seeing_id])
-      elsif params[:country_id] && params[:city_id]                          # City
+      if params[:country_id] && params[:city_id] && params[:location_id] # Location
+        Location.find(params[:location_id])
+      elsif params[:country_id] && params[:city_id]                      # City
         City.find(params[:city_id])
-      elsif params[:country_id]                                              # Country
+      elsif params[:country_id]                                          # Country
         Country.find(params[:country_id])
       else
         raise "Unknown imageable type."
