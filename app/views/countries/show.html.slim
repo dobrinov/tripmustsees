@@ -8,11 +8,14 @@
 
 h1 #{@country.name}
 
+h3 Cities
 - if @country.cities.any?
-  h3 Cities
   ul
     - @country.cities.each do |city|
       li = link_to(city.name, cities_path(country_slug: @country.slug, city_slug: city.slug))
 
 - else
-  h3 There are no cities in this country.
+  p There are no cities in this country.
+
+h3 Images
+p There are no images from this country.

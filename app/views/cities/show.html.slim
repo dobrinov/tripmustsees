@@ -8,3 +8,15 @@
 
 h1 = @city.name
 h4 = @city.country.name
+
+h3 Locations
+- if @city.locations.any?
+  ul
+    - @city.locations.each do |location|
+      li = link_to(location.name, sight_seeing_path(country_slug: @city.country.slug, city_slug: @city.slug, sight_seeing_slug: location.slug))
+
+- else
+  p There are no locations in this city.
+
+h3 Images
+p There are no images from this city.
