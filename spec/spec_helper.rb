@@ -11,4 +11,13 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  #Remove uploaded files
+  RSpec.configure do |config|
+    config.after(:each) do
+      if Rails.env.test?
+        FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+      end
+    end
+  end
+
 end
