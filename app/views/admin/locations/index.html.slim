@@ -10,10 +10,10 @@ h1 Locations
       tbody
         - @locations.each do |location|
           tr
-            td = link_to location.name, admin_country_city_location_path(@country, @city, location)
+            td = link_to location.name, admin_location_path(location)
             td = location.slug
 
 - else
   p There are no locations.
 
-= link_to 'New location', new_admin_country_city_location_path(@country, @city), class: 'btn btn-primary'
+= link_to 'New location', new_admin_city_location_path(@city), class: 'btn btn-primary'

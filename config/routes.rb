@@ -8,10 +8,14 @@ Rails.application.routes.draw do
   # Routes
   namespace :admin do
     resources :countries, concerns: :imageable, except: [:destroy] do
-      resources :cities, concerns: :imageable, except: [:destroy] do
-        resources :locations, concerns: :imageable
-      end
+      resources :cities, only: [:index, :new, :create]
     end
+
+    resources :cities, concerns: :imageable, only: [:show, :edit, :update] do
+      resources :locations, only: [:index, :new, :create]
+    end
+
+    resources :locations, concerns: :imageable, only: [:show, :edit, :update, :destroy]
 
     root to: 'countries#index'
   end

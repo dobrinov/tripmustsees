@@ -11,9 +11,9 @@ h1 Cities
       tbody
         - @cities.each do |city|
           tr
-            td #{link_to city.name, admin_country_city_path(@country, city)}
+            td #{link_to city.name, admin_city_path(city)}
             td = city.slug
-            td #{link_to city.locations.size, admin_country_city_locations_path(@country, city)}
+            td #{link_to city.locations.size, admin_city_locations_path(city)}
 
 - else
   p There are no cities.

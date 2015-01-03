@@ -32,11 +32,6 @@ RSpec.describe Admin::CitiesController, :type => :controller do
   describe 'GET show' do
     let!(:city) { create(:city) }
 
-    it "assigns @country" do
-      get :show, { country_id: country.id, id: city.id }
-      expect(assigns(:country)).to eq(country)
-    end
-
     it "assigns @city" do
       get :show, { country_id: country.id, id: city.id }
       expect(assigns(:city)).to eq(city)
@@ -108,78 +103,67 @@ RSpec.describe Admin::CitiesController, :type => :controller do
       end
     end
 
-
-    describe 'GET edit' do
-      let!(:city) { create(:city) }
-
-      it "assigns @country" do
-        get :edit, { country_id: country.id, id: city.id }
-        expect(assigns(:country)).to eq(country)
-      end
-
-      it "assigns @city" do
-        get :edit, { country_id: country.id, id: city.id }
-        expect(assigns(:city)).to eq(city)
-      end
-
-      it "is successful" do
-        get :edit, { country_id: country.id, id: city.id }
-        expect(response).to be_success
-      end
-
-      it "loads map script" do
-        expect(controller).to receive(:load_map_javascript)
-        get :edit, { country_id: country.id, id: city.id }
-      end
-    end
-
-
-    describe 'PUT update' do
-      let!(:city) { create(:city) }
-
-      it "assigns @country" do
-        put :update, { country_id: country.id, id: city.id }
-        expect(assigns(:country)).to eq(country)
-      end
-
-      it "assigns @city" do
-        put :update, { country_id: country.id, id: city.id }
-        expect(assigns(:city)).to eq(city)
-      end
-
-      it "loads map script" do
-        expect(controller).to receive(:load_map_javascript)
-        put :update, { country_id: country.id, id: city.id }
-      end
-
-      context "when valid" do
-        before do
-          allow_any_instance_of(City).to receive(:valid?).and_return(true)
-        end
-
-        it "redirects to cities index" do
-          put :update, { country_id: country.id, id: city.id }
-          expect(response).to redirect_to(admin_country_cities_path(country))
-        end
-      end
-
-      context "when invalid" do
-        before do
-          allow_any_instance_of(City).to receive(:valid?).and_return(false)
-        end
-
-        it "renders edit" do
-          put :update, { country_id: country.id, id: city.id }
-          expect(response).to render_template(:edit)
-        end
-      end
-    end
-
-
     context "when invalid" do
       it "is successful" do
         post :create, { country_id: country.id, city: invalid_attributes }
         expect(response).to be_success
+      end
+    end
+  end
+
+
+  describe 'GET edit' do
+    let!(:city) { create(:city) }
+
+    it "assigns @city" do
+      get :edit, { country_id: country.id, id: city.id }
+      expect(assigns(:city)).to eq(city)
+    end
+
+    it "is successful" do
+      get :edit, { country_id: country.id, id: city.id }
+      expect(response).to be_success
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :edit, { country_id: country.id, id: city.id }
+    end
+  end
+
+
+  describe 'PUT update' do
+    let!(:city) { create(:city) }
+
+    it "assigns @city" do
+      put :update, { id: city.id }
+      expect(assigns(:city)).to eq(city)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      put :update, { id: city.id }
+    end
+
+    context "when valid" do
+      before do
+        allow_any_instance_of(City).to receive(:valid?).and_return(true)
+      end
+
+      it "redirects to cities index" do
+        put :update, { id: city.id }
+        expect(response).to redirect_to(admin_country_cities_path(city.country))
+      end
+    end
+
+    context "when invalid" do
+      before do
+        allow_any_instance_of(City).to receive(:valid?).and_return(false)
+      end
+
+      it "renders edit" do
+        put :update, { id: city.id }
+        expect(response).to render_template(:edit)
       end
     end
   end

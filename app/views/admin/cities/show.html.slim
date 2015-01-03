@@ -1,5 +1,5 @@
-h1 City (#{@city.name}, #{@country.name})
+h1 City (#{@city.name}, #{@city.country.name})
 
-= link_to('Edit', edit_admin_country_city_path(@country, @city))
+= link_to('Edit', edit_admin_city_path(@city))
 | &nbsp;|&nbsp;
-= link_to('Locations', admin_country_city_locations_path(@country, @city))
+= link_to('Locations', admin_city_locations_path(@city))

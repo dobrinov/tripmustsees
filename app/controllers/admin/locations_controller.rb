@@ -1,8 +1,7 @@
 module Admin
   class LocationsController < BaseController
 
-    before_action :set_country
-    before_action :set_city
+    before_action :set_city, only: [:index, :new, :create]
 
     before_action :load_map_javascript, except: [:index, :destroy]
 
@@ -28,7 +27,7 @@ module Admin
       @city.locations << @location
 
       if @location.save
-        redirect_to admin_country_city_locations_path(@country, @city)
+        redirect_to admin_city_locations_path(@city)
       else
         render :new
       end
@@ -42,7 +41,7 @@ module Admin
       @location = Location.find(params[:id])
 
       if @location.update(location_params)
-        redirect_to admin_country_city_locations_path(@country, @city)
+        redirect_to admin_city_locations_path(@location.city)
       else
         render :edit
       end
@@ -52,7 +51,7 @@ module Admin
       @location = Location.find(params[:id])
       @location.destroy
 
-      redirect_to admin_country_city_locations_path(@country, @city)
+      redirect_to admin_city_locations_path(@location.city)
     end
 
     private
@@ -62,12 +61,6 @@ module Admin
         params[:location].permit(:name, :slug, :latitude, :longitude, :default_zoom_level)
       else
         {}
-      end
-    end
-
-    def set_country
-      if params[:country_id].present?
-        @country = Country.find(params[:country_id])
       end
     end
 

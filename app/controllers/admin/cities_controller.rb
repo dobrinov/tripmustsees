@@ -1,7 +1,7 @@
 module Admin
   class CitiesController < BaseController
 
-    before_action :set_country
+    before_action :set_country, only: [:index, :new, :create]
     before_action :load_map_javascript, except: [:index]
 
     def index
@@ -26,7 +26,7 @@ module Admin
       @country.cities << @city
 
       if @city.save
-        redirect_to admin_country_cities_path(@country)
+        redirect_to admin_country_cities_path(@city.country)
       else
         render :new
       end
@@ -40,7 +40,7 @@ module Admin
       @city = City.find(params[:id])
 
       if @city.update(city_params)
-        redirect_to admin_country_cities_path(@country)
+        redirect_to admin_country_cities_path(@city.country)
       else
         render :edit
       end

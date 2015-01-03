@@ -1,9 +1,4 @@
 = form_for [:admin, country, city, location] do |location_form|
-  = label_tag :city_name, 'City name'
-  = text_field_tag :city_name, city.name, disabled: true
-
-  br
-  br
 
   = location_form.label :name
   = location_form.text_field :name

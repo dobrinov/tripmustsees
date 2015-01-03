@@ -12,11 +12,6 @@ RSpec.describe Admin::LocationsController, :type => :controller do
   describe 'GET index' do
     let(:locations) { FactoryGirl.create_list(:location, 3, city: city) }
 
-    it "assigns @country" do
-      get :index, { country_id: country.id, city_id: city.id }
-      expect(assigns(:country)).to eq(country)
-    end
-
     it "assigns @city" do
       get :index, { country_id: country.id, city_id: city.id }
       expect(assigns(:city)).to eq(city)
@@ -76,11 +71,6 @@ RSpec.describe Admin::LocationsController, :type => :controller do
   describe 'POST create' do
     let(:location) { build(:location) }
 
-    it "assigns @country" do
-      post :create, { country_id: country.id, city_id: city.id, location: location.attributes }
-      expect(assigns(:country)).to be_instance_of(Country)
-    end
-
     it "assigns @city" do
       post :create, { country_id: country.id, city_id: city.id, location: location.attributes }
       expect(assigns(:city)).to be_instance_of(City)
@@ -105,7 +95,7 @@ RSpec.describe Admin::LocationsController, :type => :controller do
 
       it "is redirect" do
         post :create, { country_id: country.id, city_id: city.id, location: location.attributes }
-        expect(response).to redirect_to admin_country_city_locations_path(country, city)
+        expect(response).to redirect_to admin_city_locations_path(city)
       end
     end
 
@@ -140,36 +130,26 @@ RSpec.describe Admin::LocationsController, :type => :controller do
     let!(:location) { create(:location) }
     let(:invalid_attributes) { { name: '' } }
 
-    it "assigns @country" do
-      patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: location.attributes }
-      expect(assigns(:country)).to be_instance_of(Country)
-    end
-
-    it "assigns @city" do
-      patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: location.attributes }
-      expect(assigns(:city)).to be_instance_of(City)
-    end
-
     it "assigns @location" do
-      patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: location.attributes }
+      patch :update, { city_id: city.id, id: location.id, location: location.attributes }
       expect(assigns(:location)).to be_a(Location)
     end
 
     it "loads map script" do
       expect(controller).to receive(:load_map_javascript)
-      patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: location.attributes }
+      patch :update, { city_id: city.id, id: location.id, location: location.attributes }
     end
 
     context "when valid" do
       it "is redirect" do
-        patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: location.attributes }
-        expect(response).to redirect_to admin_country_city_locations_path(country, city)
+        patch :update, { city_id: city.id, id: location.id, location: location.attributes }
+        expect(response).to redirect_to admin_city_locations_path(location.city)
       end
     end
 
     context "when invalid" do
       it "is successful" do
-        patch :update, { country_id: country.id, city_id: city.id, id: location.id, location: invalid_attributes }
+        patch :update, { city_id: city.id, id: location.id, location: invalid_attributes }
         expect(response).to be_success
       end
     end
@@ -178,16 +158,6 @@ RSpec.describe Admin::LocationsController, :type => :controller do
 
   describe 'DELETE destroy' do
     let!(:location) { create(:location) }
-
-    it "assigns @country" do
-      delete :destroy, { country_id: country.id, city_id: city.id, id: location.id }
-      expect(assigns(:country)).to be_instance_of(Country)
-    end
-
-    it "assigns @city" do
-      delete :destroy, { country_id: country.id, city_id: city.id, id: location.id }
-      expect(assigns(:city)).to be_instance_of(City)
-    end
 
     it "assigns @location" do
       delete :destroy, { country_id: country.id, city_id: city.id, id: location.id }
@@ -202,7 +172,7 @@ RSpec.describe Admin::LocationsController, :type => :controller do
 
     it "is redirect" do
       delete :destroy, { country_id: country.id, city_id: city.id, id: location.id }
-      expect(response).to redirect_to admin_country_city_locations_path(country, city)
+      expect(response).to redirect_to admin_city_locations_path(location.city)
     end
   end
 end
