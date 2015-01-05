@@ -27,3 +27,19 @@
   br
 
   = country_form.submit
+
+br
+br
+
+h3 Images
+- if country.images.any?
+  - country.images.each do |image|
+    = image_tag image.file.url(:small)
+    = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
+- else
+  p There are no images for this country.
+
+= form_for [:admin, country, Image.new] do |image_form|
+  = hidden_referrer_input_tag
+  = image_form.file_field :file
+  = image_form.submit 'Upload'
