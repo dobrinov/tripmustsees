@@ -16,6 +16,7 @@ gem 'jquery-turbolinks'
 gem "factory_girl_rails", "~> 4.0"
 gem 'redirectr', '~> 0.1.0'
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'spring'
