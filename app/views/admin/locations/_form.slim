@@ -32,15 +32,16 @@
 br
 br
 
-h3 Images
-- if location.images.any?
-  - location.images.each do |image|
-    = image_tag image.file.url(:small)
-    = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
-- else
-  p There are no images for this location.
+- if location.persisted?
+  h3 Images
+  - if location.images.any?
+    - location.images.each do |image|
+      = image_tag image.file.url(:small)
+      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
+  - else
+    p There are no images for this location.
 
-= form_for [:admin, location, Image.new] do |image_form|
-  = hidden_referrer_input_tag
-  = image_form.file_field :file
-  = image_form.submit 'Upload'
+  = form_for [:admin, location, Image.new] do |image_form|
+    = hidden_referrer_input_tag
+    = image_form.file_field :file
+    = image_form.submit 'Upload'
