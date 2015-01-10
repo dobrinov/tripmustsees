@@ -4,6 +4,8 @@ class CreateImages < ActiveRecord::Migration
       t.string :file
       t.integer :imageable_id
       t.string  :imageable_type
+      t.integer :priority
+
       t.timestamps
     end
 

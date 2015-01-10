@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150101221424) do
     t.string   "file"
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

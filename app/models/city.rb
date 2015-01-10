@@ -1,9 +1,11 @@
 class City < ActiveRecord::Base
 
+  # Modules
+  include Imagable
+
   # Associations
   belongs_to :country
   has_many :locations, dependent: :destroy
-  has_many :images, as: :imageable, dependent: :destroy
 
   # Validations
   validates :name, presence: true

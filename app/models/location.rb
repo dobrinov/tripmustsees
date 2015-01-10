@@ -1,9 +1,11 @@
 class Location < ActiveRecord::Base
 
+  # Modules
+  include Imagable
+
   # Associations
   belongs_to :city
   belongs_to :location_category
-  has_many :images, as: :imageable, dependent: :destroy
 
   # Validations
   validates :name, presence: true
