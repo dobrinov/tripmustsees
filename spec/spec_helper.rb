@@ -14,6 +14,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Run the specs in random order
+  config.order = :random
+
   #Remove uploaded files
   RSpec.configure do |config|
     config.after(:each) do
