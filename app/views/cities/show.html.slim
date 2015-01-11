@@ -6,17 +6,16 @@
                       data-zoom="#{@city.default_zoom_level}"
                     }
 
-h1 = @city.name
-h4 = @city.country.name
+h1 = "#{@city.name}, #{@city.country.name}"
 
-h3 Locations
 - if @city.locations.any?
-  ul
+  .row
     - @city.locations.each do |location|
-      li = link_to(location.name, location_path(country_slug: @city.country.slug, city_slug: @city.slug, location_slug: location.slug))
+      .col-sm-4
+        = link_to city_path(country_slug: location.country.slug, city_slug: location.city.slug), class: 'card card_city' do
+        = link_to location_path(country_slug: @city.country.slug, city_slug: @city.slug, location_slug: location.slug), class: 'card card_location' do
+          .card__image = image_tag location.primary_image.file.url(:medium)
+          .card__title = location.name
 
 - else
   p There are no locations in this city.
-
-h3 Images
-p There are no images from this city.

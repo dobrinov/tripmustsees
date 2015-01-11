@@ -1,6 +1,9 @@
 // Colors
 @import "palette";
 
+// Fonts
+@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);
+
 // Responsive
 @import "responsive";
 
@@ -11,8 +14,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Base style
+@import "base/tripmustsees";
+
 // BEM
 @import "bem/body/**";
+@import "bem/card/**";
+@import "bem/card/country/**";
+@import "bem/card/city/**";
+@import "bem/card/location/**";
 @import "bem/footer/**";
 @import "bem/header/**";
 @import "bem/logo/**";

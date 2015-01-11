@@ -8,14 +8,13 @@
 
 h1 #{@country.name}
 
-h3 Cities
 - if @country.cities.any?
-  ul
+  .row
     - @country.cities.each do |city|
-      li = link_to(city.name, city_path(country_slug: @country.slug, city_slug: city.slug))
+      .col-sm-4
+        = link_to city_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
+          .card__image = image_tag city.primary_image.file.url(:medium)
+          .card__title = city.name
 
 - else
   p There are no cities in this country.
-
-h3 Images
-p There are no images from this country.
