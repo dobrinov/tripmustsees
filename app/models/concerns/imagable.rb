@@ -6,9 +6,11 @@ module Imagable
   end
 
   def primary_image
-    images.order(priority: :asc)
-          .order(created_at: :asc)
-          .limit(1).first
+    if images.any?
+      images.order(priority: :asc).order(created_at: :asc).first
+    else
+      images.build
+    end
   end
 
   def secondary_images
