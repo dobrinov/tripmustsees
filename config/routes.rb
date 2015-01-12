@@ -21,11 +21,21 @@ Rails.application.routes.draw do
   end
 
 
+  resources :countries, only: [] do
+    resources :cities, only: [:index]
+  end
+
+  resources :cities, only: [:index] do
+    resources :locations, only: [:index]
+  end
+
+  resources :locations, only: [:show]
+
   # Slug based country URLs
   get ':country_slug' => 'countries#show',
         constraints: {
           country_slug:      /[a-z_]+/
-        }, as: 'country'
+        }, as: 'country_slug'
 
 
   # Slug based city URLs
@@ -33,7 +43,7 @@ Rails.application.routes.draw do
         constraints: {
           country_slug:      /[a-z_]+/,
           city_slug:         /[a-z_]+/
-        }, as: 'city'
+        }, as: 'city_slug'
 
 
   # Slug based location URLs
@@ -42,7 +52,7 @@ Rails.application.routes.draw do
           country_slug:  /[a-z_]+/,
           city_slug:     /[a-z_]+/,
           location_slug: /[a-z_]+/
-        }, as: 'location'
+        }, as: 'location_slug'
 
 
   # Static pages

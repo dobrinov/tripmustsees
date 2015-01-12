@@ -1,5 +1,6 @@
 .card__image {
   img {
+    @include border-top-radius(6px);
     width: 100%;
   }
 }

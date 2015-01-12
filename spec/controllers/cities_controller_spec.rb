@@ -2,9 +2,21 @@ require "rails_helper"
 
 RSpec.describe CitiesController, :type => :controller do
 
+  describe 'GET index' do
+    let!(:country) { create(:country) }
+    let!(:cities) { FactoryGirl.create_list(:city, 3, country: country) }
+
+    context "when format is JSON" do
+      it "is 200" do
+        get :index, { country_id: country.id, :format => :json }
+        expect(response).to be_success
+      end
+    end
+  end
+
+
   describe 'GET show' do
-    let(:country) { create(:country) }
-    let(:city)    { create(:city)    }
+    let(:city) { create(:city) }
 
     it "loads map script" do
       expect(controller).to receive(:load_map_javascript)

@@ -4,6 +4,7 @@
                       data-lat="#{@country.latitude}"
                       data-lng="#{@country.longitude}"
                       data-zoom="#{@country.default_zoom_level}"
+                      data-markers-url="#{country_cities_path(@country, format: :json)}"
                     }
 
 h1 #{@country.name}
@@ -12,7 +13,7 @@ h1 #{@country.name}
   .row
     - @country.cities.each do |city|
       .col-sm-4
-        = link_to city_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
+        = link_to city_slug_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
           .card__image = image_tag city.primary_image.file.url(:medium)
           .card__title = city.name
 

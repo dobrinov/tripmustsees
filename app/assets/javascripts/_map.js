@@ -16,11 +16,10 @@
         },
         zoom_level: 2,
         lat: 0,
-        lng: 0,
-        show_pin: false
+        lng: 0
       };
 
-  function Map(element, options) {
+  function Map(element, options){
     var self = this;
 
     self.element = element;
@@ -46,7 +45,7 @@
     var initial_zoom_level = parseInt(self.map.data('zoom')) || self.options.zoom_level;
     var initial_lat = parseFloat(self.map.data('lat')) || self.options.lat;
     var initial_lng = parseFloat(self.map.data('lng')) || self.options.lng;
-    var show_pin = self.map.data('show-pin') || self.options.show_pin;
+    var markers_url = self.map.attr('data-markers-url');
 
     var map_options = {
                         zoom: initial_zoom_level,
@@ -66,8 +65,8 @@
 
     self.map = new google.maps.Map(document.getElementsByClassName(self.options.selectors.canvas.replace('.', ''))[0], map_options);
 
-    if(show_pin){
-      self.placeMarker(initial_lat, initial_lng);
+    if(markers_url){
+      self.placeMarkers(markers_url);
     }
 
     google.maps.event.addListener(self.map, 'dragend', function(e) {
@@ -82,13 +81,30 @@
     });
   };
 
+  Map.prototype.placeMarkers = function(marker_url){
+    var self = this;
+
+    $.ajax({
+      url: marker_url,
+      dataType: 'json'
+    }).done(function(markers, textStatus, jqXHR){
+      if(markers.constructor === Array){
+        for(var i=0; i<markers.length; i++){
+          self.placeMarker(markers[i].latitude, markers[i].longitude);
+        }
+      } else {
+        self.placeMarker(markers.latitude, markers.longitude);
+      }
+    });
+  };
+
   Map.prototype.placeMarker = function(lat, lng){
-    var marker = new google.maps.Marker({
-                                          map:       this.map,
-                                          animation: google.maps.Animation.DROP,
-                                          position:  new google.maps.LatLng(lat, lng)
-                                        });
-  }
+    new google.maps.Marker({
+                            map:       this.map,
+                            animation: google.maps.Animation.DROP,
+                            position:  new google.maps.LatLng(lat, lng)
+                          });
+  };
 
   $.fn[pluginName] = function(options){
     return this.each(function(){
