@@ -1,4 +1,7 @@
 .row
+  .cover-image style="background-image: url(#{@location.primary_image.file.url(:large)});"
+    .cover-image__overlay
+
   .col-md-12
     h1 = @location.name
     h4 #{@location.city.name}, #{@location.country.name}

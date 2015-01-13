@@ -1,0 +1,13 @@
+.cover-image__overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-image: image-url('gradient_overlay.png');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+
+  @include opacity(0.9);
+  z-index: 1;
+}
