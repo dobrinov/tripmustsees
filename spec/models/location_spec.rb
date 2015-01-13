@@ -10,4 +10,22 @@ RSpec.describe Location, :type => :model do
     end
   end
 
+  describe ".find_by_slug" do
+    let!(:location) { create(:location) }
+
+    context "when Location available" do
+      it "returns country by slug" do
+        expect(Location.find_by_slug(location.country.slug, location.city.slug, location.slug)).to eq(location)
+      end
+    end
+
+
+    context "when Location not available" do
+      it "raises ActiveRecord::RecordNotFound" do
+        expect do
+          Location.find_by_slug('non_exiting', 'non_exiting', 'non_exiting')
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

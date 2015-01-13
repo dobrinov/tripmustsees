@@ -29,6 +29,16 @@ RSpec.describe LocationsController, :type => :controller do
       end
 
       context "when Location exist" do
+        it "is 200" do
+          get :show, {
+                        country_slug:  location.city.country.slug,
+                        city_slug:     location.city.slug,
+                        location_slug: location.slug
+                     }
+
+          expect(response).to be_success
+        end
+
         it "assigns @location" do
           get :show, {
                         country_slug:  location.city.country.slug,
@@ -40,17 +50,6 @@ RSpec.describe LocationsController, :type => :controller do
         end
       end
 
-      context "when Location doesn't exist" do
-        it "raises ActiveRecord::RecordNotFound" do
-          expect do
-            get :show, {
-                          country_slug:  'non_exiting',
-                          city_slug:     'non_exiting',
-                          location_slug: 'non_exiting'
-                       }
-          end.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
     end
 
     context "when format is JSON" do

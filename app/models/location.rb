@@ -19,4 +19,17 @@ class Location < ActiveRecord::Base
     city.country
   end
 
+  def self.find_by_slug(country_slug, city_slug, slug)
+    location = Location.includes(:city => :country)
+                       .where(             slug: slug          )
+                       .where(cities:    { slug: city_slug    })
+                       .where(countries: { slug: country_slug }).first
+
+    if location.nil?
+      raise ActiveRecord::RecordNotFound
+    end
+
+    location
+  end
+
 end
