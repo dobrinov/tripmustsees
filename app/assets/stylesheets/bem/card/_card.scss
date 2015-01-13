@@ -9,8 +9,7 @@
     text-decoration: none;
   }
 
-  background-color: $color_white;
+  background-color: $color_pale_gray;
   @include border-radius(6px);
   @include box-sizing(border-box);
-  border: 1px solid #eeeeee;
 }
