@@ -18,6 +18,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     "fallback/" + [version_name, "default.jpg"].compact.join('_')
   end
 
+  version :cover do
+    process resize_to_fill: [1600, 600]
+  end
+
   version :large do
     process resize_to_fill: [500, 500]
   end
