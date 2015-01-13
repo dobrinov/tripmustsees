@@ -14,7 +14,7 @@ RSpec.describe Location, :type => :model do
     let!(:location) { create(:location) }
 
     context "when Location available" do
-      it "returns country by slug" do
+      it "returns Location by slug" do
         expect(Location.find_by_slug(location.country.slug, location.city.slug, location.slug)).to eq(location)
       end
     end

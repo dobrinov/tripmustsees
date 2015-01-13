@@ -15,4 +15,16 @@ class City < ActiveRecord::Base
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :default_zoom_level, presence: true
+
+  def self.find_by_slug(country_slug, slug)
+    city = City.includes(:country)
+               .where(slug: slug)
+               .where(countries: { slug: country_slug }).first
+
+    if city.nil?
+      raise ActiveRecord::RecordNotFound
+    end
+
+    city
+  end
 end

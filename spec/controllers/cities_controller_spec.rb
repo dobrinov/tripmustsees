@@ -26,26 +26,22 @@ RSpec.describe CitiesController, :type => :controller do
                   }
     end
 
-    context "when City exist" do
-      it "assigns @city" do
-        get :show,  {
-                     country_slug: city.country.slug,
-                     city_slug:    city.slug
-                    }
+    it "is 200" do
+      get :show,  {
+                   country_slug: city.country.slug,
+                   city_slug:    city.slug
+                  }
 
-        expect(assigns(:city)).to be_a(City)
-      end
+      expect(response).to be_success
     end
 
-    context "when City doesn't exist" do
-      it "raises ActiveRecord::RecordNotFound" do
-        expect do
-          get :show, {
-                        country_slug: 'non_exiting',
-                        city_slug:    'non_exiting'
-                     }
-        end.to raise_error(ActiveRecord::RecordNotFound)
-      end
+    it "assigns @city" do
+      get :show,  {
+                   country_slug: city.country.slug,
+                   city_slug:    city.slug
+                  }
+
+      expect(assigns(:city)).to be_a(City)
     end
   end
 

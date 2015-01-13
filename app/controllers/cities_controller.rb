@@ -12,13 +12,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @city = City.includes(:country)
-                .where(slug:              params[:city_slug])
-                .where(countries: { slug: params[:country_slug] }).first
-
-    if @city.nil?
-      raise ActiveRecord::RecordNotFound
-    end
+    @city = City.find_by_slug(params[:country_slug], params[:city_slug])
   end
 
 end

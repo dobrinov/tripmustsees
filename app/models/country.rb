@@ -13,4 +13,13 @@ class Country < ActiveRecord::Base
   validates :longitude, presence: true
   validates :default_zoom_level, presence: true
 
+  def self.find_by_slug(slug)
+    country = Country.where(slug: slug).first
+
+    if country.nil?
+      raise ActiveRecord::RecordNotFound
+    end
+
+    country
+  end
 end
