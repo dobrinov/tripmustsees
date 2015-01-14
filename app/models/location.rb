@@ -14,6 +14,7 @@ class Location < ActiveRecord::Base
                    format: { with: /[a-z_]+/ }
   validates :latitude, presence: true
   validates :longitude, presence: true
+  validates :location_category, presence: true
 
   def country
     city.country
