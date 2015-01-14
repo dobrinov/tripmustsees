@@ -1,10 +1,12 @@
 .row
   .cover-image style="background-image: url(#{@location.primary_image.file.url(:cover)});"
+    .cover-image__headings
+      h1.cover-image__heading.cover-image__heading_primary = @location.name
+      h4.cover-image__heading.cover-image__heading_secondary #{@location.city.name}, #{@location.country.name}
+
     .cover-image__overlay
 
-  .col-md-12
-    h1 = @location.name
-    h4 #{@location.city.name}, #{@location.country.name}
+  br
 
   .col-md-12
     div.map
