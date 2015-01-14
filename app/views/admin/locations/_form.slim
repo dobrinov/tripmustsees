@@ -12,6 +12,12 @@
   br
   br
 
+  = location_form.label :location_category
+  = location_form.collection_select :location_category_id, LocationCategory.all, :id, :name, { prompt: 'Select a category' }
+
+  br
+  br
+
   .map.map_fixed-height
     .map__backsight
     .map__canvas {

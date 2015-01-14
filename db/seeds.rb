@@ -4,11 +4,27 @@ if LocationCategory.any?
   puts "LocationCategories already exist. Skipping..."
 else
   location_categories = [
-    'Museum',
+    'Bridge',
+    'Building',
+    'Castle',
+    'Chatedral',
+    'Church',
     'Gallery',
-    'Landmark',
+    'Garden',
+    'Historical Relics',
+    'Monastery',
+    'Monument',
+    'Mosk',
+    'Museum',
+    'Nature Scenery',
     'Palace',
-    'Cathedral'
+    'Park',
+    'Stadium',
+    'Statue',
+    'Theme park',
+    'Tower',
+    'Waterfall',
+    'Zoo'
   ]
 
   location_categories.each { |lc| LocationCategory.create!(name: lc) }
