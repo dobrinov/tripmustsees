@@ -9,6 +9,7 @@ else
     'Castle',
     'Chatedral',
     'Church',
+    'Fountain',
     'Gallery',
     'Garden',
     'Historical Relics',
@@ -19,11 +20,11 @@ else
     'Nature Scenery',
     'Palace',
     'Park',
+    'Square',
     'Stadium',
     'Statue',
     'Theme park',
     'Tower',
-    'Waterfall',
     'Zoo'
   ]
 
