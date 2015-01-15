@@ -28,6 +28,7 @@ gem 'capistrano-bundler', '~> 1.1.2'
 group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
+  gem 'capistrano3-unicorn'
 end
 
 group :test do

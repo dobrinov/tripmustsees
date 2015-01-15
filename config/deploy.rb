@@ -12,6 +12,8 @@ set :keep_releases, 5
 set :scm, :git
 set :repo_url, "git@github.com:dobrinov/#{fetch(:application)}.git"
 
+set :rails_env, 'production'
+
 # Rbenv configuration
 set :rbenv_type, :system
 set :rbenv_ruby, "2.1.3"
@@ -22,3 +24,10 @@ set :rbenv_roles, :all
 
 set :format, :pretty
 set :log_level, :debug
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
