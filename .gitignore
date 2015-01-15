@@ -7,6 +7,9 @@
 # Ignore test coverage.
 /coverage
 
+# Ignore capistrano generated files.
+/.capistrano
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
