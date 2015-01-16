@@ -41,6 +41,7 @@
     self.input_zoom_level = $(self.options.selectors.input_zoom_level);
     self.input_lat = $(self.options.selectors.input_lat);
     self.input_lng = $(self.options.selectors.input_lng);
+    self.marker_icon = self.map.attr('data-marker-icon');
 
     var initial_zoom_level = parseInt(self.map.data('zoom')) || self.options.zoom_level;
     var initial_lat = parseFloat(self.map.data('lat')) || self.options.lat;
@@ -102,7 +103,8 @@
     new google.maps.Marker({
                             map:       this.map,
                             animation: google.maps.Animation.DROP,
-                            position:  new google.maps.LatLng(lat, lng)
+                            position:  new google.maps.LatLng(lat, lng),
+                            icon: this.marker_icon
                           });
   };
 

@@ -5,6 +5,7 @@
                       data-lng="#{@country.longitude}"
                       data-zoom="#{@country.default_zoom_level}"
                       data-markers-url="#{country_cities_path(@country, format: :json)}"
+                      data-marker-icon="#{image_path('pin_29x48.png')}"
                     }
 
 h1 #{@country.name}
