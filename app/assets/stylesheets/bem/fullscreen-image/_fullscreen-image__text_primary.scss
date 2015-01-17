@@ -2,4 +2,8 @@
   display: inline-block;
   font-family:'Anton', sans-serif;
   font-size: 80px;
+
+  @media (max-width: $breakpoint_sm) {
+    font-size: 36px;
+  }
 }
