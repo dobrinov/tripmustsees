@@ -1,0 +1,10 @@
+.fullscreen-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  background-image: image-url('landmarks/coliseum.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}

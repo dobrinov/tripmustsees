@@ -3,7 +3,7 @@
 
 // Fonts
 @import url(//fonts.googleapis.com/css?family=Anton);
-@import url(//fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300&subset=latin,cyrillic);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,700,600);
 
 // Responsive
 @import "responsive";
@@ -26,6 +26,7 @@
 @import "bem/card/location/**";
 @import "bem/cover-image/**";
 @import "bem/footer/**";
+@import "bem/fullscreen-image/**";
 @import "bem/header/**";
 @import "bem/logo/**";
 @import "bem/map/**";
