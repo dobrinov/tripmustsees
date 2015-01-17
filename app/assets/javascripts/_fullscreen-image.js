@@ -8,7 +8,8 @@
   var pluginName = 'fullscreenImage',
       defaults = {
         selectors: { // BEM
-          container: '.fullscreen-image'
+          container: '.fullscreen-image',
+          logo: '.fullscreen-image__logo'
         }
       };
 
@@ -29,17 +30,34 @@
     var self = this;
 
     self.node = $(self.options.selectors.container);
+    self.logo = $(self.options.selectors.logo);
 
     $(window).resize(function(){
       self.resize();
     })
 
     self.resize();
+
+    self.dropLogo();
   }
 
   FullscreenImage.prototype.resize = function(){
     var self = this;
     self.node.height(self.getVisibleHeight());
+  }
+
+  FullscreenImage.prototype.dropLogo = function(){
+    var self = this;
+
+    self.logo.css('top',  -self.node.height() / 2);
+    setTimeout(function(){
+      self.logo.animate({
+        top: -46
+      }, {
+        duration: 1200,
+        easing: "easeOutBounce"
+      });
+    }, 2000);
   }
 
   FullscreenImage.prototype.getVisibleWidth = function(){
