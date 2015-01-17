@@ -5,4 +5,6 @@
   top: 50%;
   margin-top: -75px;
   min-height: 150px;
+
+  @include text-shadow($color_black 0px 0px 10px);
 }
