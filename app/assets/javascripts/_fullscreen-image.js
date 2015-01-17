@@ -34,6 +34,7 @@
 
     $(window).resize(function(){
       self.resize();
+      self.logo.hide();
     })
 
     self.resize();
