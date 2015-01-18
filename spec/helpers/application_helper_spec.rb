@@ -22,4 +22,10 @@ describe ApplicationHelper do
       helper.body_javascript_includes
     end
   end
+
+  describe "#random_landingpage_image" do
+    it "returns a String" do
+      expect(helper.random_landingpage_image).to be_a(String)
+    end
+  end
 end

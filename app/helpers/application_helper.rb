@@ -20,4 +20,11 @@ module ApplicationHelper
     end.join.html_safe
   end
 
+  def random_landingpage_image
+    [
+      'landmarks/coliseum.jpg',
+      'landmarks/the_great_wall.jpg'
+    ].sample
+  end
+
 end
