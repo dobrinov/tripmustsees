@@ -30,9 +30,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-group :test do
-  gem "codeclimate-test-reporter", require: nil
-end
+gem "codeclimate-test-reporter", group: :test
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
