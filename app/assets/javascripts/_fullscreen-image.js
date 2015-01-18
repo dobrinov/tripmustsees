@@ -58,7 +58,7 @@
         duration: 1200,
         easing: "easeOutBounce"
       });
-    }, 2000);
+    }, 1000);
   }
 
   FullscreenImage.prototype.getVisibleWidth = function(){
