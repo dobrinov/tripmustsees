@@ -31,6 +31,12 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:show]
 
+
+  # Static pages
+  get 'landingpage' => 'static_pages#landingpage'
+  get 'about'       => 'static_pages#about'
+
+
   # Slug based country URLs
   get ':country_slug' => 'countries#show',
         constraints: {
@@ -54,10 +60,6 @@ Rails.application.routes.draw do
           location_slug: /[a-z_]+/
         }, as: 'location_slug'
 
-
-  # Static pages
-  get 'landingpage' => 'static_pages#landingpage'
-  get 'about'       => 'static_pages#about'
 
   root to: "static_pages#landingpage"
 end
