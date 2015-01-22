@@ -18,6 +18,9 @@ class LocationsController < ApplicationController
       @location = Location.find_by_slug(params[:country_slug], params[:city_slug], params[:location_slug])
     end
 
+    # Tracking
+    mixpanel_track_location_page_view(@location)
+
     respond_to do |format|
       format.html
       format.json { render layout: false }

@@ -10,6 +10,11 @@ RSpec.describe CountriesController, :type => :controller do
       get :show, country_slug: country.slug
     end
 
+    it "tracks page view" do
+      expect(controller).to receive(:mixpanel_track_country_page_view)
+      get :show, country_slug: country.slug
+    end
+
     context "when Country exist" do
       it "assigns @country" do
         get :show, country_slug: country.slug

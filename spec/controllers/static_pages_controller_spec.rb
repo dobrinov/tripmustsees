@@ -9,6 +9,11 @@ RSpec.describe StaticPagesController, :type => :controller do
       expect(response).to be_success
     end
 
+    it "tracks page view" do
+      expect(controller).to receive(:mixpanel_track_landing_page_view)
+      get :landingpage
+    end
+
   end
 
   describe 'GET about' do
@@ -18,6 +23,11 @@ RSpec.describe StaticPagesController, :type => :controller do
       expect(response).to be_success
     end
 
-  end  
+    it "tracks page view" do
+      expect(controller).to receive(:mixpanel_track_about_page_view)
+      get :about
+    end
+
+  end
 
 end

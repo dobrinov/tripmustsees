@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Modules
+  include Tracking
+
   private
 
   def load_additional_head_javascript(script_attributes)

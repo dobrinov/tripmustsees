@@ -8,6 +8,9 @@ class CountriesController < ApplicationController
     if @country.nil?
       raise ActiveRecord::RecordNotFound
     end
+
+    # Tracking
+    mixpanel_track_country_page_view(@country)
   end
 
 end

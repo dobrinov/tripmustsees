@@ -28,6 +28,15 @@ RSpec.describe LocationsController, :type => :controller do
                    }
       end
 
+      it "tracks page view" do
+        expect(controller).to receive(:mixpanel_track_location_page_view)
+        get :show, {
+                      country_slug:  location.city.country.slug,
+                      city_slug:     location.city.slug,
+                      location_slug: location.slug
+                   }
+      end
+
       context "when Location exist" do
         it "is 200" do
           get :show, {

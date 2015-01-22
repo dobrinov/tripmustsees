@@ -26,6 +26,14 @@ RSpec.describe CitiesController, :type => :controller do
                   }
     end
 
+    it "tracks page view" do
+      expect(controller).to receive(:mixpanel_track_city_page_view)
+      get :show,  {
+                   country_slug: city.country.slug,
+                   city_slug:    city.slug
+                  }
+    end
+
     it "is 200" do
       get :show,  {
                    country_slug: city.country.slug,

@@ -9,6 +9,14 @@ html class="no-js"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = head_javascript_includes
 
+    // Add tracking
+    - if Rails.env.development? && flash[:tracking].present?
+      = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
+
+      = render "shared/tracking/#{flash[:tracking][:tracker]}",
+              { event: flash[:tracking][:event], parameters: flash[:tracking][:parameters] }
+
+
     = csrf_meta_tags
 
     title Tripmustsees

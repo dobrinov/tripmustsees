@@ -13,6 +13,9 @@ class CitiesController < ApplicationController
 
   def show
     @city = City.find_by_slug(params[:country_slug], params[:city_slug])
+
+    # Tracking
+    mixpanel_track_city_page_view(@city)
   end
 
 end
