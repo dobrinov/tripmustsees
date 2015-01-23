@@ -24,7 +24,7 @@
     self._name = pluginName;
 
     self.init();
-  };
+  }
 
   FullscreenImage.prototype.init = function(){
     var self = this;
@@ -35,7 +35,7 @@
     $(window).resize(function(){
       self.resize();
       self.logo.hide();
-    })
+    });
 
     self.resize();
 
