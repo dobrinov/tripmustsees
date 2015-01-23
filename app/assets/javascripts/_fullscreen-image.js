@@ -24,7 +24,7 @@
     self._name = pluginName;
 
     self.init();
-  }
+  };
 
   FullscreenImage.prototype.init = function(){
     var self = this;
@@ -40,12 +40,12 @@
     self.resize();
 
     self.dropLogo();
-  }
+  };
 
   FullscreenImage.prototype.resize = function(){
     var self = this;
     self.node.height(self.getVisibleHeight());
-  }
+  };
 
   FullscreenImage.prototype.dropLogo = function(){
     var self = this;
@@ -59,15 +59,15 @@
         easing: "easeOutBounce"
       });
     }, 1000);
-  }
+  };
 
   FullscreenImage.prototype.getVisibleWidth = function(){
     return window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||0;
-  }
+  };
 
   FullscreenImage.prototype.getVisibleHeight = function(){
     return window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||0;
-  }
+  };
 
   $.fn[pluginName] = function(options){
     return this.each(function(){
