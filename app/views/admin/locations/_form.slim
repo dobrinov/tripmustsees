@@ -1,53 +1,50 @@
 = form_for [:admin, country, city, location] do |location_form|
 
-  = location_form.label :name
-  = location_form.text_field :name
+  .form-group
+    = location_form.label :name
+    = location_form.text_field :name, disabled: !editable, class: 'form-control'
 
-  br
-  br
+  .form-group
+    = location_form.label :slug
+    = location_form.text_field :slug, disabled: !editable, class: 'form-control'
 
-  = location_form.label :slug
-  = location_form.text_field :slug
+  .form-group
+    = location_form.label :location_category
+    = location_form.collection_select :location_category_id, LocationCategory.all, :id, :name, { prompt: 'Select a category' }, { disabled: !editable, class: 'form-control' }
 
-  br
-  br
+  .form-group
+    .map.map_fixed-height
+      .map__backsight
+      .map__canvas {
+                      data-lat="#{location.latitude}"
+                      data-lng="#{location.longitude}"
+                      data-zoom="#{location.default_zoom_level}"
+                      data-draggable="#{editable}"
+                      data-zoomable="#{editable}"
+                    }
 
-  = location_form.label :location_category
-  = location_form.collection_select :location_category_id, LocationCategory.all, :id, :name, { prompt: 'Select a category' }
+      = location_form.text_field :latitude, class: 'map__input map__input_lat'
+      = location_form.text_field :longitude, class: 'map__input map__input_lng'
+      = location_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
 
-  br
-  br
-
-  .map.map_fixed-height
-    .map__backsight
-    .map__canvas {
-                    data-lat="#{location.latitude}"
-                    data-lng="#{location.longitude}"
-                    data-zoom="#{location.default_zoom_level}"
-                  }
-
-    = location_form.text_field :latitude, class: 'map__input map__input_lat'
-    = location_form.text_field :longitude, class: 'map__input map__input_lng'
-    = location_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
-
-  br
-  br
-
-  = location_form.submit
-
-br
-br
+  - if editable
+    .form-group
+      = location_form.submit 'Save', class: 'btn btn-primary'
 
 - if location.persisted?
   h3 Images
   - if location.images.any?
     - location.images.each do |image|
       = image_tag image.file.url(:small)
-      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
+      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete, class: 'btn btn-danger'
   - else
-    p There are no images for this location.
+    .alert.alert-info There are no images for this location.
 
-  = form_for [:admin, location, Image.new] do |image_form|
-    = hidden_referrer_input_tag
-    = image_form.file_field :file
-    = image_form.submit 'Upload'
+  - if editable
+    = form_for [:admin, location, Image.new] do |image_form|
+      = hidden_referrer_input_tag
+      .form-group
+        = image_form.file_field :file, disabled: !editable, class: 'form-control'
+
+      .form-group
+        = image_form.submit 'Upload', class: 'btn btn-primary'

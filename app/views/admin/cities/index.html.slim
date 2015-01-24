@@ -1,8 +1,19 @@
-h1 Cities
+br
+
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li.active = @country.name
+
+ul.nav.nav-tabs
+  li = link_to 'Show', admin_country_path(@country)
+  li = link_to 'Edit', edit_admin_country_path(@country)
+  li.active = link_to 'Cities', admin_country_cities_path(@country)
+
+br
 
 - if @cities.any?
   div.table-responsive
-    table.table
+    table.table.table-striped.table-hover
       thead
         tr
           th City
@@ -16,6 +27,9 @@ h1 Cities
             td #{link_to city.locations.size, admin_city_locations_path(city)}
 
 - else
-  p There are no cities.
+  .alert.alert-info There are no cities.
 
 = link_to 'New city', new_admin_country_city_path, class: 'btn btn-primary'
+
+br
+br

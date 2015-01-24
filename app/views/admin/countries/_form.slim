@@ -1,46 +1,48 @@
 = form_for [:admin, country] do |country_form|
-  = country_form.label :name
-  = country_form.text_field :name
 
-  br
-  br
+  .form-group
+    = country_form.label :name
+    = country_form.text_field :name, disabled: !editable, class: 'form-control'
 
-  = country_form.label :slug
-  = country_form.text_field :slug
+  .form-group
+    = country_form.label :slug
+    = country_form.text_field :slug, disabled: !editable, class: 'form-control'
 
-  br
-  br
+  .form-group
+    .map.map_fixed-height
+      .map__backsight
+      .map__canvas {
+                      data-lat="#{country.latitude}"
+                      data-lng="#{country.longitude}"
+                      data-zoom="#{country.default_zoom_level}"
+                      data-draggable="#{editable}"
+                      data-zoomable="#{editable}"
+                    }
 
-  .map.map_fixed-height
-    .map__backsight
-    .map__canvas {
-                    data-lat="#{country.latitude}"
-                    data-lng="#{country.longitude}"
-                    data-zoom="#{country.default_zoom_level}"
-                  }
+      = country_form.text_field :latitude, class: 'map__input map__input_lat'
+      = country_form.text_field :longitude, class: 'map__input map__input_lng'
+      = country_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
 
-    = country_form.text_field :latitude, class: 'map__input map__input_lat'
-    = country_form.text_field :longitude, class: 'map__input map__input_lng'
-    = country_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
 
-  br
-  br
-
-  = country_form.submit
-
-br
-br
+  - if editable
+    .form-group
+      = country_form.submit 'Save', class: 'btn btn-primary'
 
 - if country.persisted?
   h3 Images
   - if country.images.any?
     - country.images.each do |image|
       = image_tag image.file.url(:small)
-      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
+      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete, class: 'btn btn-danger'
   - else
-    p There are no images for this country.
+    .alert.alert-info There are no images for this country.
 
-  = form_for [:admin, country, Image.new] do |image_form|
-    = hidden_referrer_input_tag
-    = image_form.file_field :file
-    = image_form.submit 'Upload'
+  - if editable
+    = form_for [:admin, country, Image.new] do |image_form|
+      = hidden_referrer_input_tag
+      .form-group
+        = image_form.file_field :file, disabled: !editable, class: 'form-control'
+
+
+      .form-group
+        = image_form.submit 'Upload', class: 'btn btn-primary'

@@ -1,5 +1,18 @@
-h1 City (#{@city.name}, #{@city.country.name})
+br
 
-= link_to('Edit', edit_admin_city_path(@city))
-| &nbsp;|&nbsp;
-= link_to('Locations', admin_city_locations_path(@city))
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li = link_to @city.country.name, admin_country_path(@city.country)
+  li.active = @city.name
+
+ul.nav.nav-tabs
+  li.active = link_to 'Show', admin_city_path(@city)
+  li = link_to 'Edit', edit_admin_city_path(@city)
+  li = link_to 'Locations', admin_city_locations_path(@city)
+
+br
+
+= render 'form', { country: @country, city: @city, editable: false }
+
+br
+br

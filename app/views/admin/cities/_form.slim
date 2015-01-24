@@ -1,46 +1,47 @@
 = form_for [:admin, country, city] do |city_form|
-  = city_form.label :name
-  = city_form.text_field :name
 
-  br
-  br
+  .form-group
+    = city_form.label :name
+    = city_form.text_field :name, disabled: !editable, class: 'form-control'
 
-  = city_form.label :slug
-  = city_form.text_field :slug
+  .form-group
+    = city_form.label :slug
+    = city_form.text_field :slug, disabled: !editable, class: 'form-control'
 
-  br
-  br
-
-  .map.map_fixed-height
-    .map__backsight
-    .map__canvas {
+  .form-group
+    .map.map_fixed-height
+      .map__backsight
+      .map__canvas {
                       data-lat="#{city.latitude}"
                       data-lng="#{city.longitude}"
                       data-zoom="#{city.default_zoom_level}"
+                      data-draggable="#{editable}"
+                      data-zoomable="#{editable}"
                     }
 
-    = city_form.text_field :latitude, class: 'map__input map__input_lat'
-    = city_form.text_field :longitude, class: 'map__input map__input_lng'
-    = city_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
+      = city_form.text_field :latitude, class: 'map__input map__input_lat'
+      = city_form.text_field :longitude, class: 'map__input map__input_lng'
+      = city_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
 
-  br
-  br
-
-  = city_form.submit
-
-br
-br
+  - if editable
+    .form-group
+      = city_form.submit 'Save', class: 'btn btn-primary'
 
 - if city.persisted?
   h3 Images
   - if city.images.any?
     - city.images.each do |image|
       = image_tag image.file.url(:small)
-      = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete
+      - if editable
+        = button_to 'Delete', admin_image_path(image, referrer_param => current_path), method: :delete, class: 'btn btn-danger'
   - else
-    p There are no images for this city.
+    .alert.alert-info There are no images for this city.
 
-  = form_for [:admin, city, Image.new] do |image_form|
-    = hidden_referrer_input_tag
-    = image_form.file_field :file
-    = image_form.submit 'Upload'
+  - if editable
+    = form_for [:admin, city, Image.new] do |image_form|
+      = hidden_referrer_input_tag
+      .form-group
+        = image_form.file_field :file, disabled: !editable, class: 'form-control'
+
+      .form-group
+        = image_form.submit 'Upload', class: 'btn btn-primary'

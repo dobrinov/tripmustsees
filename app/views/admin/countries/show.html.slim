@@ -1,7 +1,17 @@
-h1 Country (#{@country.name})
+br
 
-= link_to 'Back', admin_countries_path
-| &nbsp;|&nbsp;
-= link_to('Edit', edit_admin_country_path(@country))
-| &nbsp;|&nbsp;
-= link_to('Cities', admin_country_cities_path(@country))
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li.active = @country.name
+
+ul.nav.nav-tabs
+  li.active = link_to 'Show', admin_country_path(@country)
+  li = link_to 'Edit', edit_admin_country_path(@country)
+  li = link_to 'Cities', admin_country_cities_path(@country)
+
+br
+
+= render 'form', { country: @country, editable: false }
+
+br
+br

@@ -16,7 +16,9 @@
         },
         zoom_level: 2,
         lat: 0,
-        lng: 0
+        lng: 0,
+        draggable: true,
+        zoomable: true
       };
 
   function Map(element, options){
@@ -48,8 +50,15 @@
     var initial_lng = parseFloat(self.map.data('lng')) || self.options.lng;
     var markers_url = self.map.attr('data-markers-url');
 
+    var draggable = self.map.data('draggable') != undefined ?
+                      self.map.data('draggable') : self.options.draggable;
+    var zoomable  = self.map.data('zoomable')  != undefined ?
+                      self.map.data('zoomable') : self.options.zoomable;
+
     var map_options = {
                         zoom: initial_zoom_level,
+                        draggable: draggable,
+                        scrollwheel: zoomable,
                         center: {
                           lat: initial_lat,
                           lng: initial_lng
@@ -57,7 +66,7 @@
                         panControl: false,
                         streetViewControl: false,
                         mapTypeControl: false,
-                        zoomControl: true,
+                        zoomControl: zoomable,
                         zoomControlOptions: {
                           style: google.maps.ZoomControlStyle.SMALL,
                           position: google.maps.ControlPosition.LEFT_CENTER
