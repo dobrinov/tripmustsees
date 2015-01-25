@@ -51,6 +51,15 @@ RSpec.describe CitiesController, :type => :controller do
 
       expect(assigns(:city)).to be_a(City)
     end
+
+    it "assigns @locations" do
+      get :show,  {
+                   country_slug: city.country.slug,
+                   city_slug:    city.slug
+                  }
+
+      expect(assigns(:locations)).to be_a(ActiveRecord::AssociationRelation)
+    end
   end
 
 end
