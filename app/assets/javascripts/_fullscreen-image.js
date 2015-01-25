@@ -53,7 +53,7 @@
     self.logo.css('top',  -self.node.height() / 2);
     setTimeout(function(){
       self.logo.animate({
-        top: - self.logo.height() + 5
+        top: - self.logo.height() + 25
       }, {
         duration: 1200,
         easing: "easeOutBounce"

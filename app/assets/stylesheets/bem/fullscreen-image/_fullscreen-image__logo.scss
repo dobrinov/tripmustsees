@@ -1,12 +1,11 @@
 .fullscreen-image__logo {
   position: absolute;
-  width: 52px;
+  width: 80px;
   top: -999px;
   left: 50%;
-  margin-left: -24px;
+  margin-left: -38px;
 
   @media (max-width: $breakpoint_sm) {
-    width: 30px;
-    margin-left: -14px;
+    display: none;
   }
 }
