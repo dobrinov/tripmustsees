@@ -36,6 +36,16 @@ Rails.application.routes.draw do
   get 'landingpage' => 'static_pages#landingpage'
   get 'about'       => 'static_pages#about'
 
+  # SEO sitemap
+  get 'sitemap' => 'sitemaps#index', defaults: { format: 'xml' }
+
+  root to: "static_pages#landingpage"
+
+  #################################################################
+  # WARNING                                                       #
+  # Do not put anything below the slug urls, because it will be   #
+  # resolved as slug route.                                       #
+  #################################################################
 
   # Slug based country URLs
   get ':country_slug' => 'countries#show',
@@ -60,6 +70,4 @@ Rails.application.routes.draw do
           location_slug: /[a-z_]+/
         }, as: 'location_slug'
 
-
-  root to: "static_pages#landingpage"
 end
