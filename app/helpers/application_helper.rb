@@ -23,6 +23,8 @@ module ApplicationHelper
   def random_landingpage_image
     [
       'landmarks/coliseum.jpg',
+      'landmarks/big_ben.jpg',
+      'landmarks/uluru.jpg',
       'landmarks/the_great_wall.jpg'
     ].sample
   end
