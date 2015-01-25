@@ -4,6 +4,7 @@ if LocationCategory.any?
   puts "LocationCategories already exist. Skipping..."
 else
   location_categories = [
+    'Bath',
     'Bridge',
     'Building',
     'Castle',
