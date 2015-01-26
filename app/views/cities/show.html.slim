@@ -1,5 +1,11 @@
-/ SEO
-- set_page_title("Sightseeings and locations in #{@city.name}, #{@city.country.name}")
+/ SEO /////////////////////////////////////////////////////////////////////////
+
+- title       "Sightseeings in #{@city.name}, #{@city.country.name}"
+- description "Plan your trip and discover interesting places in #{@city.name}, #{@city.country.name}"
+- keywords    [@city.name, @city.country.name].join(', ')
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 - content_for(:map) do
   div.map

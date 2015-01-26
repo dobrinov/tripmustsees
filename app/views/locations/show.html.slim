@@ -1,5 +1,11 @@
-/ SEO
-- set_page_title(@location.name)
+/ SEO /////////////////////////////////////////////////////////////////////////
+
+- title       @location.name
+- description "Information about #{@location.name} (#{@location.location_category.name}), located in #{@location.city.name}, #{@location.country.name}"
+- keywords    [@location.name, @location.city.name, @location.country.name].join(', ')
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 .row
   .cover-image style="background-image: url(#{@location.primary_image.file.url(:cover)});"

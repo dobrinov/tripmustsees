@@ -1,15 +1,39 @@
 module SeoHelper
 
-  def page_title
-    @_page_title || default_page_title
+  def title(title = nil)
+    if title.present?
+      content_for :title, title
+    else
+      "Trip Must Sees | #{content_for(:title) || default_page_title}"
+    end
   end
 
-  def set_page_title(title)
-    @_page_title = title
+  def keywords(tags = nil)
+    if tags.present?
+      content_for(:meta_keywords, tags)
+    else
+      content_for?(:meta_keywords) ? [content_for(:meta_keywords), default_page_keywords].join(', ') : default_page_keywords
+    end
+  end
+
+  def description(text = nil)
+    if text.present?
+      content_for(:meta_description, text)
+    else
+      content_for(:meta_description) || default_page_description
+    end
   end
 
   def default_page_title
     'For travelers at heart'
+  end
+
+  def default_page_description
+    'Trip Must Sees - Get informed about sightseeings around the world.'
+  end
+
+  def default_page_keywords
+    'travel, sightseeing, trip, landmark, vacation, information, location'
   end
 
 end

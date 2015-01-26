@@ -1,5 +1,11 @@
-/ SEO
-- set_page_title("Explore #{@country.name}")
+/ SEO /////////////////////////////////////////////////////////////////////////
+
+- title       "Explore #{@country.name}"
+- description "Plan your trip and discover interesting places in #{@country.name}"
+- keywords    @country.name
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 - content_for(:map) do
   div.map
