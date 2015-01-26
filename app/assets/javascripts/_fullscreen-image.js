@@ -9,7 +9,8 @@
       defaults = {
         selectors: { // BEM
           container: '.fullscreen-image',
-          logo: '.fullscreen-image__logo'
+          logo:      '.fullscreen-image__logo',
+          image:     '.fullscreen-image__image'
         }
       };
 
@@ -29,8 +30,11 @@
   FullscreenImage.prototype.init = function(){
     var self = this;
 
-    self.node = $(self.options.selectors.container);
-    self.logo = $(self.options.selectors.logo);
+    self.node  = $(self.options.selectors.container);
+    self.logo  = $(self.options.selectors.logo);
+    self.image = $(self.options.selectors.image);
+
+    self.loadImage();
 
     $(window).resize(function(){
       self.resize();
@@ -41,6 +45,22 @@
 
     self.dropLogo();
   };
+
+  FullscreenImage.prototype.loadImage = function(){
+    var self = this;
+
+    var image = self.image.attr('data-image'),
+        img   = $('<img/>');
+
+    img.bind('load', function() {
+      self.image
+        .css('background-image', 'url(' + image + ')')
+        .animate({ opacity: 0 },   0)
+        .animate({ opacity: 1 }, 600);
+    });
+
+    img.attr('src', image);
+  }
 
   FullscreenImage.prototype.resize = function(){
     var self = this;

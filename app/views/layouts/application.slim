@@ -19,13 +19,13 @@ html class="no-js"
 
     = csrf_meta_tags
 
-    title = "Trip Must Sees | #{page_title}"
+    title = title
 
   body
     .header
       .container-fluid
         = link_to root_path, class: 'logo logo_navigation' do
-          = image_tag 'logo_450x104.png', class: 'logo__image'
+          = image_tag 'logo_450x104.png', alt: 'TripMustSees', class: 'logo__image'
 
     .body
       - if content_for?(:map)
