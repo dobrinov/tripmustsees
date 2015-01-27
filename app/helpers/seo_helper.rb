@@ -33,7 +33,7 @@ module SeoHelper
   end
 
   def default_page_keywords
-    'travel, sightseeing, trip, landmark, vacation, information, location'
+    'travel, guide, sightseeing, trip, landmark, vacation, information, location'
   end
 
 end
