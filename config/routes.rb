@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
     resources :locations, concerns: :imageable, only: [:show, :edit, :update, :destroy]
 
+    resources :location_categories
+
     root to: 'countries#index'
   end
 

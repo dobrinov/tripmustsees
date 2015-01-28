@@ -1,0 +1,9 @@
+= form_for [:admin, location_category] do |location_category_form|
+
+  .form-group
+    = location_category_form.label :name
+    = location_category_form.text_field :name, disabled: !editable, class: 'form-control'
+
+  - if editable
+    .form-group
+      = location_category_form.submit 'Save', class: 'btn btn-primary'

@@ -1,0 +1,20 @@
+h1 Location categories
+
+- if @location_categories.any?
+  div.table-responsive
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+      tbody
+        - @location_categories.each do |location_category|
+          tr
+            td #{link_to location_category.name, admin_location_category_path(location_category)}
+
+- else
+  .alert.alert-info There are no location categories.
+
+= link_to 'New location category', new_admin_location_category_path, class: 'btn btn-primary'
+
+br
+br

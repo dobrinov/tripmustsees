@@ -1,0 +1,7 @@
+h1 Edit category
+
+ul.nav.nav-tabs
+  li = link_to 'Show', admin_location_category_path(@location_category)
+  li.active = link_to 'Edit', edit_admin_location_category_path(@location_category)
+
+= render 'form', { location_category: @location_category, editable: true }
