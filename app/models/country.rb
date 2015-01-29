@@ -8,7 +8,9 @@ class Country < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true, format: { with: /[a-z_]+/ }
+  validates :slug, presence: true,
+                   uniqueness: true,
+                   format: { with: /\A[a-z_]+\z/ }
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :default_zoom_level, presence: true

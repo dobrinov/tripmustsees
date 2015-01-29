@@ -11,7 +11,7 @@ class City < ActiveRecord::Base
   validates :name, presence: true
   validates :slug, presence: true,
                    uniqueness: { scope: :country },
-                   format: { with: /[a-z_]+/ }
+                   format: { with: /\A[a-z_]+\z/ }
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :default_zoom_level, presence: true
