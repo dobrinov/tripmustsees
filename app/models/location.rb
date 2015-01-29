@@ -16,6 +16,9 @@ class Location < ActiveRecord::Base
   validates :longitude, presence: true
   validates :location_category, presence: true
 
+  # Scopes
+  default_scope { order(name: :asc) }
+
   def country
     city.country
   end
