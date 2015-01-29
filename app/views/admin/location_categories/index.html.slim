@@ -1,15 +1,24 @@
 h1 Location categories
 
+br
+
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li.active Location categories
+
 - if @location_categories.any?
   div.table-responsive
     table.table.table-striped.table-hover
       thead
         tr
           th Name
+          th Locations
+
       tbody
         - @location_categories.each do |location_category|
           tr
-            td #{link_to location_category.name, admin_location_category_path(location_category)}
+            td = link_to location_category.name, admin_location_category_path(location_category)
+            td = link_to location_category.locations.count, admin_location_category_locations_path(location_category)
 
 - else
   .alert.alert-info There are no location categories.

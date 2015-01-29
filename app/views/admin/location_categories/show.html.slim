@@ -1,5 +1,10 @@
 h1 Location category
 
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li = link_to 'Location categories', admin_location_categories_path
+  li.active = @location_category.name
+
 ul.nav.nav-tabs
   li.active = link_to 'Show', admin_location_category_path(@location_category)
   li = link_to 'Edit', edit_admin_location_category_path(@location_category)

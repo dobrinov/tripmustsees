@@ -1,15 +1,16 @@
 module Admin
   class LocationsController < BaseController
 
-    before_action :set_city, only: [:index, :new, :create]
+    before_action :set_city,              only: [:index, :new, :create]
+    before_action :set_location_category, only: [:index]
 
     before_action :load_map_javascript, except: [:index, :destroy]
 
     def index
-      @locations = Location.all
-
       if @city.present?
-        @locations = @locations.where(city: @city)
+        @locations = Location.where(city: @city)
+      elsif @location_category.present?
+        @locations = Location.where(location_category: @location_category)
       end
     end
 
@@ -74,6 +75,12 @@ module Admin
     def set_city
       if params[:city_id].present?
         @city = City.find(params[:city_id])
+      end
+    end
+
+    def set_location_category
+      if params[:location_category_id].present?
+        @location_category = LocationCategory.find(params[:location_category_id])
       end
     end
 
