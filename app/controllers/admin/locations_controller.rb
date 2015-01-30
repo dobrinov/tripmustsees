@@ -62,6 +62,9 @@ module Admin
         params[:location].permit(
                                  :name,
                                  :slug,
+                                 :description,
+                                 :history,
+                                 :website,
                                  :latitude,
                                  :longitude,
                                  :default_zoom_level,

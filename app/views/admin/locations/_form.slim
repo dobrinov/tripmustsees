@@ -13,6 +13,18 @@
     = location_form.collection_select :location_category_id, LocationCategory.all, :id, :name, { prompt: 'Select a category' }, { disabled: !editable, class: 'form-control' }
 
   .form-group
+    = location_form.label :description
+    = location_form.text_area :description, disabled: !editable, class: 'form-control'
+
+  .form-group
+    = location_form.label :history
+    = location_form.text_area :history, disabled: !editable, class: 'form-control'
+
+  .form-group
+    = location_form.label :website
+    = location_form.text_field :website, placeholder: 'http://example.com', disabled: !editable, class: 'form-control'
+
+  .form-group
     .map.map_fixed-height
       .map__backsight
       .map__canvas {

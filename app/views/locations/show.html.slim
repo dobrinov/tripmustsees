@@ -15,9 +15,25 @@
 
     .cover-image__overlay
 
-  br
+  .col-md-12
+    h3 General information
+    - if @location.description.present?
+      p = @location.description
+    - else
+      p No information available for #{@location.name}
+
+    - if @location.website.present?
+      p Find more on on #{link_to @location.website, @location.website}
+
+    h3 History
+    - if @location.history.present?
+      p = @location.history
+    - else
+      p No history available for #{@location.name}
 
   .col-md-12
+    h3 Location
+
     div.map
       div.map__canvas {
                         data-lat="#{@location.latitude}"

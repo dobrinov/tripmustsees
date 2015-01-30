@@ -31,6 +31,9 @@ FactoryGirl.define do
     latitude 42.695755
     longitude 23.332788
     default_zoom_level 14
+    description "Some description text"
+    history "Some history text"
+    website "http://www.example.com"
 
     city
     location_category
