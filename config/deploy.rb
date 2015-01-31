@@ -25,12 +25,34 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/upl
 
 set :format, :pretty
 set :log_level, :debug
+set :pty, true
 
 namespace :stats do
   task :uptime do
     on roles(:app), in: :parallel do |host|
       uptime = capture(:uptime)
-      puts "#{host.hostname} reports: #{uptime}"
+      info "#{host.hostname} reports: #{uptime}"
+    end
+  end
+end
+
+namespace :setup do
+  task :servers do
+    on roles(:app), in: :sequence, wait: 1 do
+      execute :sudo, "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{fetch(:application)}"
+      execute :sudo, "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
+    end
+  end
+end
+
+namespace :unicorn do
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command do
+      on roles(:app) do |host|
+        # execute :sudo, "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+        execute :sudo, "/home/deploy/current/config/unicorn_init.sh #{command}"
+      end
     end
   end
 end
