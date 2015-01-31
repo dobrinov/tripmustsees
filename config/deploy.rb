@@ -25,3 +25,12 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/upl
 
 set :format, :pretty
 set :log_level, :debug
+
+namespace :stats do
+  task :uptime do
+    on roles(:app), in: :parallel do |host|
+      uptime = capture(:uptime)
+      puts "#{host.hostname} reports: #{uptime}"
+    end
+  end
+end
