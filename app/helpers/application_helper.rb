@@ -22,8 +22,12 @@ module ApplicationHelper
 
   def random_landingpage_image
     [
-      'landmarks/coliseum.jpg',
       'landmarks/big_ben.jpg',
+      'landmarks/coliseum.jpg',
+      'landmarks/eifel_tower.jpg',
+      'landmarks/pyramids.jpg',
+      'landmarks/st_alexander_nevski.jpg',
+      'landmarks/stonehedge.jpg',
       'landmarks/the_great_wall.jpg'
     ].sample
   end
