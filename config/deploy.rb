@@ -85,6 +85,9 @@ namespace :unicorn do
     end
   end
 
+  desc 'Restat after deployment'
+  after 'deploy:publishing', 'unicorn:reload'
+
   desc 'Restart Unicorn'
   task :restart
   before :restart, :stop
