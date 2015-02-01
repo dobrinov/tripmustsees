@@ -22,6 +22,7 @@ set :rbenv_roles, :all
 
 # Linked dirs
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
+set :linked_files, %w{.rbenv-vars}
 
 set :format, :pretty
 set :log_level, :debug
@@ -67,7 +68,7 @@ namespace :unicorn do
     on roles(:app) do
       within current_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec unicorn -c #{current_path}/config/unicorn.rb -D"
+          execute :bundle, "exec unicorn -D -c #{current_path}/config/unicorn.rb -E production"
         end
       end
     end
