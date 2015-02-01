@@ -1,9 +1,12 @@
 // Colors
 @import "palette";
 
-// Fonts
+// Fonts external
 @import url(//fonts.googleapis.com/css?family=Anton);
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,700,600);
+
+// Fonts hosted
+@import "font-awesome";
 
 // Responsive
 @import "responsive";
@@ -30,6 +33,7 @@
 @import "bem/fullscreen-image/**";
 @import "bem/header/**";
 @import "bem/heading/**";
+@import "bem/landing-page-social/**";
 @import "bem/logo/**";
 @import "bem/map/**";
 @import "bem/side-panel/**";

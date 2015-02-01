@@ -19,3 +19,14 @@
     ul.country-explorer
       - @countries.each do |country|
         li.country-explorer__country = link_to country.name, country_slug_path(country_slug: country.slug)
+
+.row
+  .col-xs-12.landing-page-social
+    h2.heading.heading_landing-page Social links
+    ul.landing-page-social__links
+      li.landing-page-social__link
+        = link_to 'https://www.facebook.com/tripmustsees', target: '_blank' do
+          = fa_icon "facebook"
+      li.landing-page-social__link
+        = link_to 'https://plus.google.com/+Tripmustsees', target: '_blank' do
+          = fa_icon "google-plus"

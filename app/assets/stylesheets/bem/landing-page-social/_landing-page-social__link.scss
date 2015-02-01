@@ -1,0 +1,24 @@
+.landing-page-social__link {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+
+  a {
+    display: inline-block;
+    color: $color_white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: $color_medium_gray;
+    @include border-radius(50%);
+
+    &:hover {
+      color: $color_dark_gray;
+      background-color: $color_light_gray;
+    }
+  }
+}
