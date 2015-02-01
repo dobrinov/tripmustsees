@@ -25,8 +25,11 @@ module ApplicationHelper
       'landmarks/big_ben.jpg',
       'landmarks/coliseum.jpg',
       'landmarks/eifel_tower.jpg',
+      'landmarks/jesus.jpg',
       'landmarks/pyramids.jpg',
+      'landmarks/red_square.jpg',
       'landmarks/st_alexander_nevski.jpg',
+      'landmarks/statue_of_liberty.jpg',
       'landmarks/stonehedge.jpg',
       'landmarks/the_great_wall.jpg'
     ].sample
