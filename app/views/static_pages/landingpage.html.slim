@@ -12,3 +12,10 @@
 
       .fullscreen-image__text.fullscreen-image__text_secondary Your guide everywhere you go, helping you discover all the places worth seeing.
     .fullscreen-image__overlay
+
+.row
+  .col-xs-12
+    h2.heading.heading_landing-page Explore
+    ul.country-explorer
+      - @countries.each do |country|
+        li.country-explorer__country = link_to country.name, country_slug_path(country_slug: country.slug)
