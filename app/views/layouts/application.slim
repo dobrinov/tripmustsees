@@ -8,6 +8,9 @@ html class="no-js"
     meta name="description" content="#{description}"
 
     / Facebook meta data
+    meta property="og:url" content="#{current_path}"
+    meta property="og:title" content="#{title}"
+    meta property="og:description" content="#{description}"
     meta property="og:image" content="#{image_url('logo_150x150.png')}"
 
     = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
