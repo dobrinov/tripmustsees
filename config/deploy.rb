@@ -36,23 +36,56 @@ namespace :stats do
   end
 end
 
+namespace :ruby do
+  task :version do
+    on roles(:app) do
+      execute "ruby -v"
+    end
+  end
+end
+
 namespace :setup do
   task :servers do
     on roles(:app), in: :sequence, wait: 1 do
-      execute :sudo, "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{fetch(:application)}"
       execute :sudo, "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
     end
   end
 end
 
 namespace :unicorn do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command do
-      on roles(:app) do |host|
-        # execute :sudo, "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
-        execute :sudo, "/home/deploy/current/config/unicorn_init.sh #{command}"
+  desc 'Stop Unicorn'
+  task :stop do
+    on roles(:app) do
+      if test("[ -f #{current_path}/tmp/pids/unicorn.pid ]")
+        execute :kill, capture(:cat, "#{current_path}/tmp/pids/unicorn.pid")
       end
     end
   end
+
+  desc 'Start Unicorn'
+  task :start do
+    on roles(:app) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec unicorn -c #{current_path}/config/unicorn.rb -D"
+        end
+      end
+    end
+  end
+
+  desc 'Reload Unicorn without killing master process'
+  task :reload do
+    on roles(:app) do
+      if test("[ -f #{current_path}/tmp/pids/unicorn.pid ]")
+        execute :kill, '-s USR2', capture(:cat, "#{current_path}/tmp/pids/unicorn.pid")
+      else
+        error 'Unicorn process not running'
+      end
+    end
+  end
+
+  desc 'Restart Unicorn'
+  task :restart
+  before :restart, :stop
+  before :restart, :start
 end
