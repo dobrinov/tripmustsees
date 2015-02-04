@@ -10,7 +10,8 @@
         selectors: { // BEM
           container: '.fullscreen-image',
           logo:      '.fullscreen-image__logo',
-          image:     '.fullscreen-image__image'
+          image:     '.fullscreen-image__image',
+          arrow:     '.fullscreen-image__arrow'
         }
       };
 
@@ -33,6 +34,7 @@
     self.node  = $(self.options.selectors.container);
     self.logo  = $(self.options.selectors.logo);
     self.image = $(self.options.selectors.image);
+    self.arrow = $(self.options.selectors.arrow);
 
     self.loadImage();
 
@@ -44,6 +46,17 @@
     self.resize();
 
     self.dropLogo();
+    self.initScrollGuide();
+  };
+
+  FullscreenImage.prototype.initScrollGuide = function(){
+    var self = this;
+
+    $(window).scroll(function(){
+      self.arrow.animate({opacity: 0}, 600, function(){
+        self.arrow.remove();
+      });
+    });
   };
 
   FullscreenImage.prototype.loadImage = function(){
@@ -60,7 +73,7 @@
     });
 
     img.attr('src', image);
-  }
+  };
 
   FullscreenImage.prototype.resize = function(){
     var self = this;
