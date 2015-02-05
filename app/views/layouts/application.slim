@@ -39,12 +39,12 @@ html class="no-js"
         .container-fluid
           .row
             .side-panel.side-panel_left
-              = yield(:map)
-            .side-panel.side-panel_right
               .col-xs-12
                 = yield
               .col-xs-12
                 = render 'shared/footer'
+            .side-panel.side-panel_right
+              = yield(:map)
 
       - else
         .container-fluid

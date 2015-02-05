@@ -2,13 +2,13 @@
 
   @media (max-width: $breakpoint_sm) {
     & {
-      width: 100%;
+      display: none;
     }
   }
 
   @media (min-width: $breakpoint_sm) {
     & {
-      width: 60%;
+      width: 40%;
       right: 0;
       overflow-y: scroll;
     }
