@@ -106,22 +106,49 @@
     }).done(function(markers, textStatus, jqXHR){
       if(markers.constructor === Array){
         for(var i=0; i<markers.length; i++){
-          self.placeMarker(markers[i].latitude, markers[i].longitude);
+          self.placeMarker(markers[i].latitude, markers[i].longitude, markers[i].url);
         }
       } else {
-        self.placeMarker(markers.latitude, markers.longitude);
+        self.placeMarker(markers.latitude, markers.longitude, markers.url);
       }
     });
   };
 
-  Map.prototype.placeMarker = function(lat, lng){
-    new google.maps.Marker({
-                            map:       this.map,
-                            animation: this.pin_animation ? google.maps.Animation.DROP : null,
-                            position:  new google.maps.LatLng(lat, lng),
-                            icon: this.marker_icon
-                          });
+  Map.prototype.placeMarker = function(lat, lng, url){
+    var marker = new google.maps.Marker({
+                        map:       this.map,
+                        animation: this.pin_animation ? google.maps.Animation.DROP : null,
+                        position:  new google.maps.LatLng(lat, lng),
+                        icon: this.marker_icon,
+                        url: url
+                      });
+
+    this.attachClickEventToMarker(marker, url);
   };
+
+  Map.prototype.attachClickEventToMarker = function(marker){
+    var self = this;
+
+    google.maps.event.addListener(marker, 'click', function() {
+      self.map.setCenter(marker.getPosition());
+
+      $.ajax({
+        url: marker.url,
+        dataType: 'json'
+      }).done(function(data,textStatus,jqXHR){
+        var html =  '<div class="map__info-window">' +
+                      '<img src="' + data.image.url + '" />' +
+                      '<h3>' + data.name + '</h3>' +
+                    '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: html
+        });
+
+        infowindow.open(self.map,marker);
+      });
+    });
+  }
 
   $.fn[pluginName] = function(options){
     return this.each(function(){
