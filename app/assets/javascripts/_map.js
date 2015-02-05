@@ -18,7 +18,9 @@
         lat: 0,
         lng: 0,
         draggable: true,
-        zoomable: true
+        zoomable: true,
+        scroll_zoomable: false,
+        pin_animation: false
       };
 
   function Map(element, options){
@@ -50,15 +52,19 @@
     var initial_lng = parseFloat(self.map.data('lng')) || self.options.lng;
     var markers_url = self.map.attr('data-markers-url');
 
-    var draggable = self.map.data('draggable') != undefined ?
-                      self.map.data('draggable') : self.options.draggable;
-    var zoomable  = self.map.data('zoomable')  != undefined ?
-                      self.map.data('zoomable') : self.options.zoomable;
+    self.draggable        = self.map.data('draggable') != undefined ?
+                             self.map.data('draggable') : self.options.draggable;
+    self.zoomable         = self.map.data('zoomable')  != undefined ?
+                             self.map.data('zoomable') : self.options.zoomable;
+    self.scroll_zoomable  = self.map.data('scroll-zoomable')  != undefined ?
+                             self.map.data('scroll-zoomable') : self.options.scroll_zoomable;
+    self.pin_animation    = self.map.data('pin-animation')  != undefined ?
+                             self.map.data('pin-animation') : self.options.pin_animation;
 
     var map_options = {
                         zoom: initial_zoom_level,
-                        draggable: draggable,
-                        scrollwheel: zoomable,
+                        draggable: self.draggable,
+                        scrollwheel: self.scroll_zoomable,
                         center: {
                           lat: initial_lat,
                           lng: initial_lng
@@ -66,7 +72,7 @@
                         panControl: false,
                         streetViewControl: false,
                         mapTypeControl: false,
-                        zoomControl: zoomable,
+                        zoomControl: self.zoomable,
                         zoomControlOptions: {
                           style: google.maps.ZoomControlStyle.SMALL,
                           position: google.maps.ControlPosition.LEFT_CENTER
@@ -111,7 +117,7 @@
   Map.prototype.placeMarker = function(lat, lng){
     new google.maps.Marker({
                             map:       this.map,
-                            animation: google.maps.Animation.DROP,
+                            animation: this.pin_animation ? google.maps.Animation.DROP : null,
                             position:  new google.maps.LatLng(lat, lng),
                             icon: this.marker_icon
                           });
