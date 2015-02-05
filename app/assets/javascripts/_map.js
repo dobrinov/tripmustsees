@@ -17,10 +17,11 @@
         zoom_level: 2,
         lat: 0,
         lng: 0,
-        draggable: true,
-        zoomable: true,
-        scroll_zoomable: false,
-        pin_animation: false
+        draggable:        true,
+        zoomable:         true,
+        scroll_zoomable:  false,
+        pin_animation:    false,
+        show_marker_info: false
       };
 
   function Map(element, options){
@@ -42,6 +43,8 @@
     self.node = $(self.options.selectors.container);
     self.map = $(self.options.selectors.canvas);
 
+    self.infoWindow = undefined;
+
     self.input_zoom_level = $(self.options.selectors.input_zoom_level);
     self.input_lat = $(self.options.selectors.input_lat);
     self.input_lng = $(self.options.selectors.input_lng);
@@ -60,6 +63,9 @@
                              self.map.data('scroll-zoomable') : self.options.scroll_zoomable;
     self.pin_animation    = self.map.data('pin-animation')  != undefined ?
                              self.map.data('pin-animation') : self.options.pin_animation;
+
+    self.show_marker_info = self.map.data('show-marker-info')  != undefined ?
+                             self.map.data('show-marker-info') : self.options.show_marker_info;
 
     var map_options = {
                         zoom: initial_zoom_level,
@@ -123,7 +129,9 @@
                         url: url
                       });
 
-    this.attachClickEventToMarker(marker, url);
+    if(this.show_marker_info){
+      this.attachClickEventToMarker(marker, url);
+    }
   };
 
   Map.prototype.attachClickEventToMarker = function(marker){
@@ -136,16 +144,23 @@
         url: marker.url,
         dataType: 'json'
       }).done(function(data,textStatus,jqXHR){
-        var html =  '<div class="map__info-window">' +
-                      '<img src="' + data.image.url + '" />' +
-                      '<h3>' + data.name + '</h3>' +
-                    '</div>';
+        var html =  '<a href="' + data.url + '" class="map__info-window">' +
+                      '<img src="' + data.image.url + '" class="map__info-window__image" />' +
+                      '<h3 class="map__info-window__text">' + data.name + '</h3>' +
+                    '</a>';
 
-        var infowindow = new google.maps.InfoWindow({
-            content: html
+        infoWindow = new google.maps.InfoWindow({
+          content: html
         });
 
-        infowindow.open(self.map,marker);
+        // Close the open info window
+        if(self.infoWindow){
+          self.infoWindow.close();
+        }
+
+        self.infoWindow = infoWindow;
+
+        infoWindow.open(self.map, marker);
       });
     });
   }

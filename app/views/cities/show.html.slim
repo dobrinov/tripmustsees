@@ -15,6 +15,7 @@
                       data-zoom="#{@city.default_zoom_level}"
                       data-markers-url="#{city_locations_path(@city, format: :json)}"
                       data-marker-icon="#{image_path('pin_29x48.png')}"
+                      data-show-marker-info="true"
                     }
 
 h1 = "#{@city.name}, #{@city.country.name}"
