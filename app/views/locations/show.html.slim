@@ -23,7 +23,7 @@
       p No information available for #{@location.name}
 
     - if @location.website.present?
-      p Find more on on #{link_to @location.website, @location.website}
+      p Find more on on #{link_to @location.website, @location.website, target: '_blank'}
 
     h3 History
     - if @location.history.present?
