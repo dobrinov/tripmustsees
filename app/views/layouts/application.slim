@@ -29,12 +29,12 @@ html class="no-js"
     title = title
 
   body
-    .header
+    header.header
       .container-fluid
         = link_to root_path, class: 'logo logo_navigation' do
           = image_tag 'logo_450x104.png', alt: 'TripMustSees', class: 'logo__image'
 
-    .body
+    main.body
       - if content_for?(:map)
         .container-fluid
           .row
