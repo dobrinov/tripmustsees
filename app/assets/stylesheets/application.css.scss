@@ -18,6 +18,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Vendor
+@import "bootstrap-wysihtml5/bootstrap3-wysihtml5.css";
+
 // Base style
 @import "base/tripmustsees";
 

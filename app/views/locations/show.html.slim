@@ -18,7 +18,7 @@
   .col-md-12
     h3 General information
     - if @location.description.present?
-      p = @location.description
+      p = @location.description.html_safe
     - else
       p No information available for #{@location.name}
 
@@ -27,7 +27,7 @@
 
     h3 History
     - if @location.history.present?
-      p = @location.history
+      p = @location.history.html_safe
     - else
       p No history available for #{@location.name}
 

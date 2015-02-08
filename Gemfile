@@ -14,6 +14,7 @@ gem 'slim-rails'
 gem 'compass-rails'
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.1'
+gem 'bootstrap-wysihtml5-rails'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem "factory_girl_rails", "~> 4.0"
