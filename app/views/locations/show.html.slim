@@ -15,7 +15,7 @@
 
     .cover-image__overlay
 
-  .col-md-6
+  .col-md-8
     h3 General information
     - if @location.description.present?
       p = @location.description.html_safe
@@ -31,7 +31,7 @@
     - else
       p No history available for #{@location.name}
 
-  .col-md-6
+  .col-md-4
     h3 Location
 
     div.map
