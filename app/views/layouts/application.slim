@@ -12,6 +12,9 @@ html class="no-js"
     meta property="og:description" content="#{description}"
     meta property="og:image" content="#{image_url('logo_200x200.png')}"
 
+    / Favicon
+    = favicon_link_tag 'favicon.ico'
+
     = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = head_javascript_includes
