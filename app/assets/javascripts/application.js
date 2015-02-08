@@ -3,7 +3,8 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
-//= require bootstrap-wysihtml5
+
+//= require wysiwyg/bootstrap3-wysihtml5.all
 
 //= require _fullscreen-image
 //= require _map
