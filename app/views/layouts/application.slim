@@ -16,8 +16,11 @@ html class="no-js"
     = favicon_link_tag 'favicon.ico'
     = favicon_link_tag 'logo_200x200.png', rel: 'apple-touch-icon', type: 'image/png'
 
+    / Stylesheets
     = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    / Javascripts
     = head_javascript_includes
 
     / Add tracking
