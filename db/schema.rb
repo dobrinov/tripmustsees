@@ -11,30 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130170300) do
+ActiveRecord::Schema.define(version: 20150209172502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "slug",               limit: 255
+    t.string   "name",                limit: 255
+    t.string   "slug",                limit: 255
     t.integer  "country_id"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "default_zoom_level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "general_information"
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "slug",               limit: 255
+    t.string   "name",                limit: 255
+    t.string   "slug",                limit: 255
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "default_zoom_level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "general_information"
   end
 
   create_table "images", force: :cascade do |t|

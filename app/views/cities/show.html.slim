@@ -20,6 +20,8 @@
 
 h1 = "#{@city.name}, #{@city.country.name}"
 
+p = @city.general_information.html_safe
+
 - if @locations.any?
   .row
     - @locations.each do |location|

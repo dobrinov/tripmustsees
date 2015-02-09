@@ -9,6 +9,10 @@
     = country_form.text_field :slug, disabled: !editable, class: 'form-control'
 
   .form-group
+    = country_form.label :general_information
+    = country_form.text_area :general_information, disabled: !editable, class: 'form-control'
+
+  .form-group
     .map.map_fixed-height
       .map__backsight
       .map__canvas {

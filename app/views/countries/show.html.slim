@@ -19,6 +19,8 @@
 
 h1 #{@country.name}
 
+p = @country.general_information.html_safe
+
 - if @country.cities.any?
   .row
     - @country.cities.each do |city|
