@@ -4,6 +4,8 @@ module Admin
     before_action :set_city,              only: [:index, :new, :create]
     before_action :set_location_category, only: [:index]
 
+    before_action :load_map_javascript, except: [:index, :destroy]
+
     def index
       if @city.present?
         @locations = Location.where(city: @city)

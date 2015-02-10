@@ -2,6 +2,7 @@ module Admin
   class CitiesController < BaseController
 
     before_action :set_country, only: [:index, :new, :create]
+    before_action :load_map_javascript, except: [:index]
 
     def index
       @cities = City.all

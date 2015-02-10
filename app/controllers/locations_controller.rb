@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
 
+  before_action :load_map_javascript
+
   def index
     @city = City.find(params[:city_id])
     @locations = @city.locations

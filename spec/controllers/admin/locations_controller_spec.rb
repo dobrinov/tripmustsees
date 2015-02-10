@@ -61,6 +61,11 @@ RSpec.describe Admin::LocationsController, :type => :controller do
       get :show, { id: location.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show, { id: location.id }
+    end
   end
 
 
@@ -77,6 +82,11 @@ RSpec.describe Admin::LocationsController, :type => :controller do
       get :new, { city_id: city.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :new, { city_id: city.id }
+    end
   end
 
 
@@ -92,6 +102,11 @@ RSpec.describe Admin::LocationsController, :type => :controller do
     it "assigns @location" do
       post :create, { city_id: city.id, location: location.attributes }
       expect(assigns(:location)).to be_a(Location)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      post :create, { city_id: city.id, location: location.attributes }
     end
 
     context "when valid" do
@@ -128,6 +143,11 @@ RSpec.describe Admin::LocationsController, :type => :controller do
       get :edit, { id: location.id }
       expect(response).to be_success
     end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :edit, { id: location.id }
+    end
   end
 
 
@@ -138,6 +158,11 @@ RSpec.describe Admin::LocationsController, :type => :controller do
     it "assigns @location" do
       patch :update, { id: location.id, location: location.attributes }
       expect(assigns(:location)).to be_a(Location)
+    end
+
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      patch :update, { id: location.id, location: location.attributes }
     end
 
     context "when valid" do

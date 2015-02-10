@@ -174,3 +174,8 @@
   };
 
 })(jQuery, window, document);
+
+
+$(document).ready(function(){
+  $('.map').map();
+});

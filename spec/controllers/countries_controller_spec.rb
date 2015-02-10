@@ -5,6 +5,11 @@ RSpec.describe CountriesController, :type => :controller do
   describe 'GET show' do
     let(:country) { create(:country) }
 
+    it "loads map script" do
+      expect(controller).to receive(:load_map_javascript)
+      get :show, country_slug: country.slug
+    end
+
     it "tracks page view" do
       expect(controller).to receive(:mixpanel_track_country_page_view)
       get :show, country_slug: country.slug
