@@ -21,7 +21,7 @@
     h2.heading.heading_landing-page Explore
     ul.country-explorer
       - @countries.each do |country|
-        li.country-explorer__country = link_to country.name, country_slug_path(country_slug: country.slug)
+        li.country-explorer__country = link_to country.name, country_slug_path(country_slug: country.slug), rel: 'canonical'
 
 .row
   .col-md-8.col-md-offset-2
@@ -36,14 +36,14 @@
     h2.heading.heading_landing-page Social links
     ul.landing-page-social__links
       li.landing-page-social__link
-        = link_to 'https://www.facebook.com/tripmustsees', title: 'Facebook', target: '_blank' do
+        = link_to 'https://www.facebook.com/tripmustsees', title: 'Facebook', target: '_blank', rel: 'canonical' do
           = fa_icon "facebook"
       li.landing-page-social__link
-        = link_to 'https://plus.google.com/+Tripmustsees', title: 'Google+', target: '_blank' do
+        = link_to 'https://plus.google.com/+Tripmustsees', title: 'Google+', target: '_blank', rel: 'canonical' do
           = fa_icon "google-plus"
       li.landing-page-social__link
-        = link_to 'https://twitter.com/tripmustsees', title: 'Twitter', target: '_blank' do
+        = link_to 'https://twitter.com/tripmustsees', title: 'Twitter', target: '_blank', rel: 'canonical' do
           = fa_icon "twitter"
       li.landing-page-social__link
-        = link_to 'http://instagram.com/tripmustsees', title: 'Instagram', target: '_blank' do
+        = link_to 'http://instagram.com/tripmustsees', title: 'Instagram', target: '_blank', rel: 'canonical' do
           = fa_icon "instagram"
