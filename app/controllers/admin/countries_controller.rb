@@ -1,8 +1,6 @@
 module Admin
   class CountriesController < BaseController
 
-    before_action :load_map_javascript, except: [:index]
-
     def index
       @countries = Country.all
     end

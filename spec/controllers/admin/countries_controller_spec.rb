@@ -33,11 +33,6 @@ RSpec.describe Admin::CountriesController, :type => :controller do
       get :show, id: country.id
       expect(response).to be_success
     end
-
-    it "loads map script" do
-      expect(controller).to receive(:load_map_javascript)
-      get :show, id: country.id
-    end
   end
 
 
@@ -53,11 +48,6 @@ RSpec.describe Admin::CountriesController, :type => :controller do
       get :new
       expect(response).to be_success
     end
-
-    it "loads map script" do
-      expect(controller).to receive(:load_map_javascript)
-      get :new
-    end
   end
 
 
@@ -67,11 +57,6 @@ RSpec.describe Admin::CountriesController, :type => :controller do
     it "assigns @country" do
       post :create, country: country.attributes
       expect(assigns(:country)).to be_instance_of(Country)
-    end
-
-    it "loads map script" do
-      expect(controller).to receive(:load_map_javascript)
-      post :create, country: country.attributes
     end
 
     context "when valid" do
@@ -106,11 +91,6 @@ RSpec.describe Admin::CountriesController, :type => :controller do
       get :edit, id: country.id
       expect(response).to be_success
     end
-
-    it "loads map script" do
-      expect(controller).to receive(:load_map_javascript)
-      get :edit, id: country.id
-    end
   end
 
 
@@ -120,11 +100,6 @@ RSpec.describe Admin::CountriesController, :type => :controller do
     it "assigns @country" do
       put :update, id: country.id
       expect(assigns(:country)).to eq(country)
-    end
-
-    it "loads map script" do
-      expect(controller).to receive(:load_map_javascript)
-      put :update, id: country.id
     end
 
     context "when valid" do

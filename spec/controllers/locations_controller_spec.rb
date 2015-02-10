@@ -19,15 +19,6 @@ RSpec.describe LocationsController, :type => :controller do
     let(:location) { create(:location) }
 
     context "when format is HTML" do
-      it "loads map script" do
-        expect(controller).to receive(:load_map_javascript)
-        get :show, {
-                      country_slug:  location.city.country.slug,
-                      city_slug:     location.city.slug,
-                      location_slug: location.slug
-                   }
-      end
-
       it "tracks page view" do
         expect(controller).to receive(:mixpanel_track_location_page_view)
         get :show, {
