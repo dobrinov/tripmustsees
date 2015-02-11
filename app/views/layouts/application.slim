@@ -17,10 +17,15 @@ html class="no-js"
     = favicon_link_tag 'logo_200x200.png', rel: 'apple-touch-icon', type: 'image/png'
 
     / Stylesheets
-    = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
+    = stylesheet_link_tag 'application', 'data-turbolinks-track' => true, media: 'all'
 
     / Javascripts
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = head_javascript_includes
+
+    / Initialize tracking
+    - if Rails.env.production?
+      = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
 
     = csrf_meta_tags
 
@@ -50,9 +55,14 @@ html class="no-js"
         .container-fluid
           = render 'shared/footer'
 
-    / Load javascripts
+    / Do tracking
+    /
+    / Turbolinks warning!
+    / Keep this in the <body> to work correctly with turbo-links.
+    = yield(:tracking)
+
+    / Load body javascripts
     = body_javascript_includes
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     / Load fonts
     javascript:
@@ -69,10 +79,3 @@ html class="no-js"
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
       })();
-
-    / Do tracking
-    - if Rails.env.production? && flash[:tracking].present?
-      = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
-
-      = render "shared/tracking/#{flash[:tracking][:tracker]}",
-              { event: flash[:tracking][:event], parameters: flash[:tracking][:parameters] }

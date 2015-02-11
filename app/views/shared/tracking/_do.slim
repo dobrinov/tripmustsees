@@ -1,0 +1,3 @@
+- if Rails.env.production? && flash[:tracking].present?
+  = render "shared/tracking/#{flash[:tracking][:tracker]}",
+          { event: flash[:tracking][:event], parameters: flash[:tracking][:parameters] }
