@@ -23,14 +23,6 @@ html class="no-js"
     / Javascripts
     = head_javascript_includes
 
-    / Add tracking
-    - if Rails.env.production? && flash[:tracking].present?
-      = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
-
-      = render "shared/tracking/#{flash[:tracking][:tracker]}",
-              { event: flash[:tracking][:event], parameters: flash[:tracking][:parameters] }
-
-
     = csrf_meta_tags
 
     title = title
@@ -60,3 +52,10 @@ html class="no-js"
           = render 'shared/footer'
 
     = body_javascript_includes
+
+    / Do tracking
+    - if Rails.env.production? && flash[:tracking].present?
+      = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
+
+      = render "shared/tracking/#{flash[:tracking][:tracker]}",
+              { event: flash[:tracking][:event], parameters: flash[:tracking][:parameters] }
