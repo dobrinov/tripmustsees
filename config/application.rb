@@ -12,6 +12,7 @@ module Tripmustsees
 
     # Additional JS assets for compilation
     Rails.application.config.assets.precompile += [
+      'tracking.js'
     ]
 
     # Additional CSS assets for compilation
