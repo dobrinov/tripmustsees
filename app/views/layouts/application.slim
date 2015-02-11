@@ -18,7 +18,6 @@ html class="no-js"
 
     / Stylesheets
     = stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all'
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     / Javascripts
     = head_javascript_includes
@@ -51,7 +50,9 @@ html class="no-js"
         .container-fluid
           = render 'shared/footer'
 
+    / Load javascripts
     = body_javascript_includes
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     / Do tracking
     - if Rails.env.production? && flash[:tracking].present?
