@@ -25,6 +25,7 @@ h1 = "#{@city.name}, #{@city.country.name}"
 
 - if @city.general_information.present?
   p = @city.general_information.html_safe
+  br
 
 - if @locations.any?
   .row
