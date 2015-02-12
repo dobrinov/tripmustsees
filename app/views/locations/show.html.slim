@@ -18,31 +18,37 @@ end
 
     .cover-image__overlay
 
+  .col-md-2
   .col-md-8
-    h3 General information
-    - if @location.description.present?
-      p = @location.description.html_safe
-    - else
-      p No information available for #{@location.name}
+    .row
+      .col-md-12
+        h3 General information
+        - if @location.description.present?
+          p = @location.description.html_safe
+        - else
+          p No information available for #{@location.name}
 
-    - if @location.website.present?
-      p Find more on on #{link_to @location.website, @location.website, target: '_blank'}
+        - if @location.website.present?
+          p Find more on on #{link_to @location.website, @location.website, target: '_blank'}
 
-    h3 History
-    - if @location.history.present?
-      p = @location.history.html_safe
-    - else
-      p No history available for #{@location.name}
+      .col-md-12
+        h3 History
+        - if @location.history.present?
+          p = @location.history.html_safe
+        - else
+          p No history available for #{@location.name}
 
-  .col-md-4
-    h3 Location
+      .col-md-12
+        h3 Location
 
-    div.map
-      div.map__canvas {
-                        data-lat="#{@location.latitude}"
-                        data-lng="#{@location.longitude}"
-                        data-zoom="#{@location.default_zoom_level}"
-                        data-markers-url="#{location_path(@location, format: :json)}"
-                        data-marker-icon="#{image_path('pin_29x48.png')}"
-                        data-pin-animation="true"
-                      }
+        div.map
+          div.map__canvas {
+                            data-lat="#{@location.latitude}"
+                            data-lng="#{@location.longitude}"
+                            data-zoom="#{@location.default_zoom_level}"
+                            data-markers-url="#{location_path(@location, format: :json)}"
+                            data-marker-icon="#{image_path('pin_29x48.png')}"
+                            data-pin-animation="true"
+                          }
+
+  .col-md-2
