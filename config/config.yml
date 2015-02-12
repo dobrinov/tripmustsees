@@ -1,0 +1,17 @@
+defaults: &defaults
+
+development:
+  <<: *defaults
+  tracking:
+    mixpanel:
+      token: e6ad156ff826e0fa341549e42e1d8be5
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  tracking:
+    mixpanel:
+      token: dc94870bc069b97eb78647992db838ba
+
