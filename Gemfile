@@ -28,6 +28,7 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'newrelic_rpm'
 
 group :development do
+  gem 'quiet_assets'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
