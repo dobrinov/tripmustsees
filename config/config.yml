@@ -14,4 +14,3 @@ production:
   tracking:
     mixpanel:
       token: dc94870bc069b97eb78647992db838ba
-

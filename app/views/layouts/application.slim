@@ -21,11 +21,13 @@ html class="no-js"
 
     / Javascripts
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = head_javascript_includes
+    = javascript_includes
 
     / Initialize tracking
-    - if Rails.env.production?
+    - if do_tracking?
       = javascript_include_tag 'tracking', 'data-turbolinks-track' => true
+      - trackers.each do |tracker|
+        = render "shared/tracking/#{tracker}/init"
 
     = csrf_meta_tags
 
@@ -55,16 +57,19 @@ html class="no-js"
         .container-fluid
           = render 'shared/footer'
 
+
+    / #######################################
     / Do tracking
-    /
-    / Turbolinks warning!
-    / Keep this in the <body> to work correctly with turbo-links.
-    = yield(:tracking)
+    / #######################################
+    - if flash[:tracking].present?
+      - flash[:tracking].keys.each do |tracker|
+        - flash[:tracking][tracker][:events].each do |event|
+          = render "shared/tracking/#{tracker}/track", { name: event[:name], parameters: event[:parameters]}
 
-    / Load body javascripts
-    = body_javascript_includes
 
+    / #######################################
     / Load fonts
+    / #######################################
     javascript:
       WebFontConfig = {
         google: { families: ['Anton', 'Open Sans'] }

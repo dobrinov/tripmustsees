@@ -1,5 +1,0 @@
-javascript:
-  var event_name = "#{event}";
-  var event_parameters = JSON.parse("#{escape_javascript parameters.to_json.html_safe}");
-
-  mixpanel.track(event_name, event_parameters);

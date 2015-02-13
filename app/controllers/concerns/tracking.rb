@@ -9,31 +9,37 @@ module Tracking
   private
 
   def track(tracker, event, parameters={})
-    flash.now[:tracking] = {
-      tracker:    tracker,
-      event:      event,
+    flash.now[:tracking]                   ||= {}
+    flash.now[:tracking][tracker]          ||= {}
+    flash.now[:tracking][tracker][:events] ||= []
+
+    flash.now[:tracking][tracker][:events] << {
+      name:       event,
       parameters: parameters
     }
   end
 
+  def track_mixpanel(event, params={})
+    track(:mixpanel, event, params)
+  end
+
   def mixpanel_track_about_page_view
-    track(:mixpanel, 'About page viewed')
+    track_mixpanel('About page viewed')
   end
 
   def mixpanel_track_landing_page_view
-    track(:mixpanel, 'Landing page viewed')
+    track_mixpanel('Landing page viewed')
   end
 
   def mixpanel_track_country_page_view(country)
-    track(:mixpanel, 'Country page viewed', { name: country.name })
+    track_mixpanel('Country page viewed', { name: country.name })
   end
 
   def mixpanel_track_city_page_view(city)
-    track(:mixpanel, 'City page viewed', { name: city.name })
+    track_mixpanel('City page viewed', { name: city.name })
   end
 
   def mixpanel_track_location_page_view(location)
-    track(:mixpanel, 'Location page viewed', { name: location.name })
+    track_mixpanel('Location page viewed', { name: location.name })
   end
-
 end
