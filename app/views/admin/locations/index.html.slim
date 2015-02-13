@@ -22,6 +22,8 @@ br
           th City
           th Caegory
           th Slug
+          th Actions
+
       tbody
         - @locations.each do |location|
           tr
@@ -29,6 +31,10 @@ br
             td = link_to location.city.name, admin_city_path(location.city)
             td = link_to location.location_category.name, admin_location_category_locations_path(location.location_category)
             td = location.slug
+            td = button_to 'Delete', admin_location_path(location),
+                                     method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     class: 'btn btn-danger btn-xs'
 
 - else
   .alert.alert-info There are no locations.
