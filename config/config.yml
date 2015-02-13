@@ -1,4 +1,5 @@
 defaults: &defaults
+  founded_year: 2015
 
 development:
   <<: *defaults

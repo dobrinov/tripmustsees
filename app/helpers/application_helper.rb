@@ -25,4 +25,11 @@ module ApplicationHelper
     ].sample
   end
 
+  def website_online_year_range
+    if APP_CONFIG['founded_year'] == Time.now.year
+      "#{APP_CONFIG['founded_year']}"
+    else
+      "#{APP_CONFIG['founded_year']} - #{Time.now.year}"
+    end
+  end
 end
