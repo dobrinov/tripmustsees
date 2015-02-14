@@ -20,6 +20,11 @@ module Tracking
   end
 
   def track_mixpanel(event, params={})
+    # Explicitly set the referrer and the referring_domain,
+    # which should be used in Mixpanel
+    params['$referrer']         = mixpanel_referrer
+    params['$referring_domain'] = mixpanel_referring_domain
+
     track(:mixpanel, event, params)
   end
 
@@ -41,5 +46,18 @@ module Tracking
 
   def mixpanel_track_location_page_view(location)
     track_mixpanel('Location page viewed', { name: location.name })
+  end
+
+  def mixpanel_referrer
+    request.referer.present? ? request.referer : '$direct'
+  end
+
+  def mixpanel_referring_domain
+    if request.referer
+      referer_uri = URI.parse(request.referer)
+      "#{referer_uri.host}:#{referer_uri.port}/"
+    else
+      '$direct'
+    end
   end
 end
