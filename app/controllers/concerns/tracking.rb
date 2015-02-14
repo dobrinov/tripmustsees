@@ -54,8 +54,7 @@ module Tracking
 
   def mixpanel_referring_domain
     if request.referer
-      referer_uri = URI.parse(request.referer)
-      "#{referer_uri.host}:#{referer_uri.port}/"
+      URI.parse(request.referer).host
     else
       '$direct'
     end
