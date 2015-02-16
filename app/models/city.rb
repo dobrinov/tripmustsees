@@ -16,6 +16,9 @@ class City < ActiveRecord::Base
   validates :longitude, presence: true
   validates :default_zoom_level, presence: true
 
+  # Scopes
+  scope :published, -> { where(published: true) }
+
   def self.find_by_slug(country_slug, slug)
     city = City.includes(:country)
                .where(slug: slug)

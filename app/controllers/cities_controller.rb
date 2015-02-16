@@ -4,7 +4,7 @@ class CitiesController < ApplicationController
 
   def index
     @country = Country.find(params[:country_id])
-    @cities = @country.cities
+    @cities = @country.cities.published
 
     respond_to do |format|
       format.json { render layout: false }

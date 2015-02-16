@@ -4,10 +4,26 @@ RSpec.describe CitiesController, :type => :controller do
 
   describe 'GET index' do
     let!(:country) { create(:country) }
-    let!(:cities) { FactoryGirl.create_list(:city, 3, country: country) }
+    let!(:published_cities)   { FactoryGirl.create_list(:city, 3, country: country, published: true) }
+    let!(:unpublished_cities) { FactoryGirl.create_list(:city, 3, country: country, published: false) }
 
     context "when format is JSON" do
       it "is 200" do
+        get :index, { country_id: country.id, :format => :json }
+        expect(response).to be_success
+      end
+
+      it "assigns @country" do
+        get :index, { country_id: country.id, :format => :json }
+        expect(assigns(:country)).not_to be_nil
+      end
+
+      it "assigns @cities" do
+        get :index, { country_id: country.id, :format => :json }
+        expect(assigns(:cities)).to eq(published_cities)
+      end
+
+      it "returns only published Cities" do
         get :index, { country_id: country.id, :format => :json }
         expect(response).to be_success
       end
@@ -58,7 +74,7 @@ RSpec.describe CitiesController, :type => :controller do
                    city_slug:    city.slug
                   }
 
-      expect(assigns(:locations)).to be_a(ActiveRecord::AssociationRelation)
+      expect(assigns(:locations)).not_to be_nil
     end
   end
 

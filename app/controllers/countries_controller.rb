@@ -9,6 +9,8 @@ class CountriesController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
+    @cities = @country.cities.published
+
     # Tracking
     mixpanel_track_country_page_view(@country)
   end

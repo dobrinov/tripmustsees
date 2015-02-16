@@ -22,9 +22,9 @@ h1 #{@country.name}
   p = @country.general_information.html_safe
   br
 
-- if @country.cities.any?
+- if @cities.any?
   .row
-    - @country.cities.each do |city|
+    - @cities.each do |city|
       .col-sm-4
         = link_to city_slug_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
           .card__image = image_tag city.primary_image.file.url(:medium)
