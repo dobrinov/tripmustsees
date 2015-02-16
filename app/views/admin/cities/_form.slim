@@ -9,6 +9,14 @@
     = city_form.text_field :slug, disabled: !editable, class: 'form-control'
 
   .form-group
+    = city_form.label :capital
+    div = city_form.check_box :capital, disabled: !editable
+
+  .form-group
+    = city_form.label :population
+    = city_form.number_field :population, disabled: !editable, class: 'form-control'
+
+  .form-group
     = city_form.label :general_information
     = city_form.text_area :general_information, disabled: !editable, class: 'form-control'
 
@@ -26,6 +34,10 @@
       = city_form.text_field :latitude, class: 'map__input map__input_lat'
       = city_form.text_field :longitude, class: 'map__input map__input_lng'
       = city_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
+
+  .form-group
+    = city_form.label :published
+    div = city_form.check_box :published, disabled: !editable
 
   - if editable
     .form-group

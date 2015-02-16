@@ -15,6 +15,9 @@ FactoryGirl.define do
     latitude 42.70
     longitude 23.33
     default_zoom_level 8
+    capital true
+    published true
+    population 2000000
 
     country
   end
