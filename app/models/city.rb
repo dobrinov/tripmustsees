@@ -18,6 +18,7 @@ class City < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(published: true) }
+  scope :capital,   -> { where(capital: true) }
 
   def self.find_by_slug(country_slug, slug)
     city = City.includes(:country)

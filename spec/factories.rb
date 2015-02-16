@@ -17,7 +17,7 @@ FactoryGirl.define do
     default_zoom_level 8
     capital true
     published true
-    population 2000000
+    population { rand(1..100) }
 
     country
   end
