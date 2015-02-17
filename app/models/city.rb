@@ -21,14 +21,8 @@ class City < ActiveRecord::Base
   scope :capital,   -> { where(capital: true) }
 
   def self.find_by_slug(country_slug, slug)
-    city = City.includes(:country)
-               .where(slug: slug)
-               .where(countries: { slug: country_slug }).first
-
-    if city.nil?
-      raise ActiveRecord::RecordNotFound
-    end
-
-    city
+    City.includes(:country)
+        .where(slug: slug)
+        .where(countries: { slug: country_slug }).first!
   end
 end

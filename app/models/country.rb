@@ -16,12 +16,6 @@ class Country < ActiveRecord::Base
   validates :default_zoom_level, presence: true
 
   def self.find_by_slug(slug)
-    country = Country.where(slug: slug).first
-
-    if country.nil?
-      raise ActiveRecord::RecordNotFound
-    end
-
-    country
+    Country.where(slug: slug).first!
   end
 end
