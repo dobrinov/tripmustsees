@@ -35,6 +35,11 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:show]
 
+  # Omniauth
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: 'static_pages#landingpage'
+  post 'signin', to: 'sessions#create'
+  delete 'signout', to: 'sessions#destroy'
 
   # Static pages
   get 'landingpage' => 'static_pages#landingpage'

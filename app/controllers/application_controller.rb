@@ -4,7 +4,20 @@ class ApplicationController < ActionController::Base
   # Modules
   include Tracking
 
+  # Helper methods
+  helper_method \
+    :current_user,
+    :logged_in?
+
   private
+
+  def logged_in?
+    current_user.present?
+  end
+
+  def current_user
+    @_current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 
   def load_additional_javascript(script_attributes)
     @_additional_javascripts ||= []

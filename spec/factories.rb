@@ -48,6 +48,15 @@ FactoryGirl.define do
   end
 
 
+  factory :user do
+    email "chuck.norris@example.com"
+    first_name "Chuck"
+    last_name "Norris"
+    provider "facebook"
+    uid "123"
+  end
+
+
   sequence :slug do |n|
     "slug_#{(0...12).map { ('a'..'z').to_a[rand(26)] }.join}"
   end

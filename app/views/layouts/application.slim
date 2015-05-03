@@ -39,6 +39,9 @@ html class="no-js"
         = link_to root_path, class: 'logo logo_navigation' do
           = image_tag 'logo_450x104.png', alt: 'TripMustSees', class: 'logo__image'
 
+        - if logged_in?
+          = link_to 'Logout', signout_path, :method => :delete
+
     main.body
       - if content_for?(:map)
         .container-fluid
