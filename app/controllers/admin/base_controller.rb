@@ -1,7 +1,7 @@
 module Admin
   class BaseController < ::ApplicationController
-    if Rails.env.production?
-      http_basic_authenticate_with name: ENV['ADMIN_USER'], password: ENV['ADMIN_PASS']
+    before_action do
+      redirect_to root_path unless logged_in? && current_user.admin?
     end
   end
 end
