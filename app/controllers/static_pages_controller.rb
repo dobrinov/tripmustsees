@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   end
 
   def landingpage
-    @countries = Country.all
+    @countries = Country.all.order(name: :asc)
 
     mixpanel_track_landing_page_view
   end
