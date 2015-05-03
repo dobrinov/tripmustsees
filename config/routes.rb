@@ -42,8 +42,10 @@ Rails.application.routes.draw do
   delete 'signout', to: 'sessions#destroy'
 
   # Static pages
-  get 'landingpage' => 'static_pages#landingpage'
-  get 'about'       => 'static_pages#about'
+  get 'landingpage'      => 'static_pages#landingpage'
+  get 'about'            => 'static_pages#about'
+  get 'privacy'          => 'static_pages#privacy'
+  get 'terms_of_service' => 'static_pages#terms_of_service'
 
   # SEO sitemap
   get 'sitemap' => 'sitemaps#index', defaults: { format: 'xml' }
