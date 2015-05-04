@@ -27,6 +27,7 @@ gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'newrelic_rpm'
 gem 'omniauth-facebook'
+gem 'pry-rails'
 
 group :development do
   gem 'quiet_assets'
@@ -34,9 +35,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-gem "codeclimate-test-reporter", group: :test
-
-group :development, :test do
+group :test do
   gem 'rspec-rails', '~> 3.0'
-  gem 'pry-rails'
+  gem "codeclimate-test-reporter"
 end
