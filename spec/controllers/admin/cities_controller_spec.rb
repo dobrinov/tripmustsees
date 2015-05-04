@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Admin::CitiesController, :type => :controller do
 
+  before { allow(controller).to receive(:current_user).and_return(create(:admin_user)) }
+
   let(:country) { create(:country) }
 
   let(:invalid_attributes) do

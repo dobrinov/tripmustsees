@@ -57,6 +57,11 @@ FactoryGirl.define do
   end
 
 
+  factory :admin_user, :parent => :user do
+    admin true
+  end
+
+
   sequence :slug do |n|
     "slug_#{(0...12).map { ('a'..'z').to_a[rand(26)] }.join}"
   end

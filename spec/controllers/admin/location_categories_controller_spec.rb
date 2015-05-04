@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Admin::LocationCategoriesController, :type => :controller do
 
+  before { allow(controller).to receive(:current_user).and_return(create(:admin_user)) }
+
   describe "GET index" do
     let(:location_category) { create(:location_category) }
 

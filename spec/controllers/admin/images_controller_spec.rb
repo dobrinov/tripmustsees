@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Admin::ImagesController, :type => :controller do
 
+  before { allow(controller).to receive(:current_user).and_return(create(:admin_user)) }
+
   describe "POST create" do
     let(:file_for_upload) { fixture_file_upload('/images/dummy.jpg', 'image/jpeg') }
 
