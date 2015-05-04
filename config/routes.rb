@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get 'about'            => 'static_pages#about'
   get 'privacy'          => 'static_pages#privacy'
   get 'terms_of_service' => 'static_pages#terms_of_service'
+  get 'contribute'       => 'static_pages#contribute'
 
   # SEO sitemap
   get 'sitemap' => 'sitemaps#index', defaults: { format: 'xml' }
