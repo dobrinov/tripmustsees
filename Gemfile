@@ -38,4 +38,6 @@ end
 group :test do
   gem 'rspec-rails', '~> 3.0'
   gem "codeclimate-test-reporter"
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end

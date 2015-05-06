@@ -7,10 +7,13 @@ development:
   <<: *default
   database: tms_development
 
-test:
+test: &test
   <<: *default
   database: tms_test
 
 production:
   <<: *default
   database: tms_production
+
+cucumber:
+  <<: *test
