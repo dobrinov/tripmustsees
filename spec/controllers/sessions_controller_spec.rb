@@ -16,6 +16,17 @@ RSpec.describe SessionsController, :type => :controller do
         post :create
       }.to change { session[:user_id] }.to(user.id)
     end
+
+    context 'when referrer available' do
+      let(:referrer) { '/path/to/redirect' }
+
+      before { allow(controller).to receive(:env).and_return({ "omniauth.params" => { "referrer" => referrer }}) }
+
+      it 'redirects to referrer path' do
+        post :create
+        expect(response).to redirect_to referrer
+      end
+    end
   end
 
   describe "DELETE destroy" do
