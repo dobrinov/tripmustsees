@@ -35,10 +35,6 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:show]
 
-  get '/contributions/select_country', to: 'contributions#select_country'
-  get '/contributions/select_city', to: 'contributions#select_city'
-  get '/contributions/suggest_location', to: 'contributions#suggest_location'
-
   # Omniauth
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'static_pages#landingpage'
