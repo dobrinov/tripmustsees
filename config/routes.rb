@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :countries, only: [] do
+  resources :countries, only: [:index] do
     resources :cities, only: [:index]
   end
 

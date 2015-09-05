@@ -1,0 +1,31 @@
+/ SEO /////////////////////////////////////////////////////////////////////////
+
+- title       "Explore"
+- description "Explore the countries available in the Tripmustsees database."
+- keywords    "Tripmustsees countries"
+
+///////////////////////////////////////////////////////////////////////////////
+- content_for(:side_panel_right) do
+  div.map
+    div.map__canvas {
+                      data-lat="0.0"
+                      data-lng="0.0"
+                      data-zoom="0"
+                      data-markers-url="#{countries_path(format: :json)}"
+                      data-marker-icon="#{image_path('pin_29x48.png')}"
+                    }
+
+h1 Explore
+
+p Explore the beautiful locations available at the Tripmustsees database.
+
+- if @countries.any?
+  .row
+    - @countries.each do |country|
+      .col-sm-4
+        = link_to country_slug_path(country_slug: country.slug), class: 'card card_country' do
+          .card__image = image_tag country.primary_image.file.url(:medium)
+          .card__title = country.name
+
+- else
+  p There are no countries in the database.
