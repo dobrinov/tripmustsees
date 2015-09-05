@@ -43,7 +43,7 @@ html class="no-js"
           = link_to 'Logout', signout_path, :method => :delete
 
     main.body
-      - if content_for?(:map)
+      - if content_for?(:side_panel_right)
         .container-fluid
           .row
             .side-panel.side-panel_left
@@ -52,7 +52,7 @@ html class="no-js"
               .col-xs-12
                 = render 'shared/footer'
             .side-panel.side-panel_right
-              = yield(:map)
+              = yield(:side_panel_right)
 
       - else
         .container-fluid
