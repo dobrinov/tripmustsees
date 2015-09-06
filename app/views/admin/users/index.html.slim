@@ -1,0 +1,30 @@
+br
+
+ol.breadcrumb
+  li = link_to 'Admin', admin_root_path
+  li.active Users
+
+- if @users.any?
+  div.table-responsive
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Email
+          th Registered at
+          th Last login at
+      tbody
+        - @users.each do |user|
+          tr
+            td
+              = link_to "https://www.facebook.com/#{user.uid}", target: '_blank' do
+                = "#{user.first_name} #{user.last_name}"
+            td = user.email
+            td = user.created_at
+            td = user.last_login_at
+
+- else
+  .alert.alert-info There are no users.
+
+br
+br

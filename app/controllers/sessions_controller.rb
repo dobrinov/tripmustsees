@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(env["omniauth.auth"])
+    user.update_attribute(:last_login_at, Time.now)
     session[:user_id] = user.id
     redirect_to back_or_default, notice: 'Signed in'
   end

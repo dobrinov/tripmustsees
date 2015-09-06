@@ -1,7 +1,8 @@
 br
 
 ol.breadcrumb
-  li.active Admin
+  li = link_to 'Admin', admin_root_path
+  li.active Countries
 
 - if @countries.any?
   div.table-responsive

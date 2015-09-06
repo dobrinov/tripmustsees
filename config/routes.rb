@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :locations, only: [:index]
     end
 
+    resources :users, only: [:index]
+
     root to: 'countries#index'
   end
 
