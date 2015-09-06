@@ -25,21 +25,22 @@ Rails.application.routes.draw do
   end
 
 
-  resources :countries, only: [:index] do
-    resources :cities, only: [:index]
+  resources :countries, only: [:index, :new, :create] do
+    resources :cities, only: [:index, :new, :create]
   end
 
   resources :cities, only: [:index] do
-    resources :locations, only: [:index]
+    resources :locations, only: [:index, :new, :create]
   end
 
   resources :locations, only: [:show]
 
   # Omniauth
-  get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/failure', to: 'static_pages#landingpage'
-  post 'signin', to: 'sessions#create'
-  delete 'signout', to: 'sessions#destroy'
+  get    '/auth/:provider/callback', to: 'sessions#create'
+  get    '/auth/failure',            to: 'static_pages#landingpage'
+  get    'signin',                   to: 'sessions#new'
+  post   'signin',                   to: 'sessions#create'
+  delete 'signout',                  to: 'sessions#destroy'
 
   # Static pages
   get 'landingpage'      => 'static_pages#landingpage'

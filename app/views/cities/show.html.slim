@@ -23,13 +23,20 @@ h1 = "#{@city.name}, #{@city.country.name}"
   p = @city.general_information.html_safe
   br
 
-- if @locations.any?
-  .row
-    - @locations.each do |location|
-      .col-sm-4
-        = link_to location_slug_path(country_slug: @city.country.slug, city_slug: @city.slug, location_slug: location.slug), class: 'card card_location' do
-          .card__image = image_tag location.primary_image.file.url(:medium)
-          .card__title = location.name
+.row
+  - @locations.each do |location|
+    .col-sm-3
+      = link_to location_slug_path(country_slug: @city.country.slug, city_slug: @city.slug, location_slug: location.slug), class: 'card card_location' do
+        .card__image = image_tag location.primary_image.file.url(:medium)
+        .card__title = location.name
+  .col-sm-3
+    = link_to new_city_location_path(city_id: @city.id), class: 'card card_city' do
+      .card__image = image_tag 'transparent_pixel.png'
+      .card__text
+        | Cannot find the location which you are looking for?
+        br
+        br
+        | Add it!
 
-- else
-  p There are no locations in this city.
+      .card__title Add a location
+

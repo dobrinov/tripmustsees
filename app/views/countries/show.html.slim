@@ -22,13 +22,18 @@ h1 #{@country.name}
   p = @country.general_information.html_safe
   br
 
-- if @cities.any?
-  .row
-    - @cities.each do |city|
-      .col-sm-4
-        = link_to city_slug_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
-          .card__image = image_tag city.primary_image.file.url(:medium)
-          .card__title = city.name
-
-- else
-  p There are no cities in this country.
+.row
+  - @cities.each do |city|
+    .col-sm-3
+      = link_to city_slug_path(country_slug: @country.slug, city_slug: city.slug), class: 'card card_city' do
+        .card__image = image_tag city.primary_image.file.url(:medium)
+        .card__title = city.name
+  .col-sm-3
+    = link_to new_country_city_path(country_id: @country.id), class: 'card card_city' do
+      .card__image = image_tag 'transparent_pixel.png'
+      .card__text
+        | Cannot find the city which you are looking for?
+        br
+        br
+        | Add it!
+      .card__title Add a city

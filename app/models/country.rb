@@ -4,6 +4,7 @@ class Country < ActiveRecord::Base
   include Imagable
 
   # Associations
+  belongs_to :user
   has_many :cities, dependent: :destroy
 
   # Validations

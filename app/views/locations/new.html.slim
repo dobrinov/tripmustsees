@@ -1,0 +1,52 @@
+.row
+  .col-sm-6
+    h1 Add a location in #{@city.name}
+    p Contribute to tripmustsees.com by adding a missing location.
+
+= form_for [@city, @location] do |location_form|
+  .row
+    .col-sm-6
+      .form-group
+        = location_form.label :name
+        = location_form.text_field :name, placeholder: 'What is the name of the location?', class: 'form-control'
+
+  .row
+    .col-sm-6
+      .form-group
+        = location_form.label :location_category, 'Category'
+        = location_form.collection_select :location_category_id, LocationCategory.all, :id, :name, { prompt: 'Select a category' }, { class: 'form-control' }
+
+  .row
+    .col-sm-6
+      .form-group
+        = location_form.label :description, 'Information (optional)'
+        = location_form.text_area :description, placeholder: 'Do you know something interesting about this place?', class: 'form-control'
+
+  .row
+    .col-sm-6
+      .form-group
+        = location_form.label :website, 'Website (optional)'
+        = location_form.text_field :website, placeholder: 'Do you know a website of the location?', class: 'form-control'
+
+  .row
+    .col-sm-6
+      .form-group
+        = label_tag 'Location'
+        p Drag, drop and zoom until you mark the location name on the map with the red circle.
+        .map.map_fixed-height
+          .map__backsight
+          .map__canvas {
+                          data-lat="#{@city.latitude}"
+                          data-lng="#{@city.longitude}"
+                          data-zoom="#{@city.default_zoom_level}"
+                          data-draggable="true"
+                          data-zoomable="true"
+                        }
+
+          = location_form.text_field :latitude, class: 'map__input map__input_lat'
+          = location_form.text_field :longitude, class: 'map__input map__input_lng'
+          = location_form.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
+  .row
+    .col-sm-6
+      .form-group
+        = location_form.submit 'Add location', class: 'btn btn-primary'

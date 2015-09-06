@@ -1,5 +1,8 @@
 = form_for [:admin, country] do |country_form|
 
+  - unless country.persisted?
+    = country_form.hidden_field :user_id, { value: current_user.id }
+
   .form-group
     = country_form.label :name
     = country_form.text_field :name, disabled: !editable, class: 'form-control'
@@ -10,7 +13,7 @@
 
   .form-group
     = country_form.label :general_information
-    = country_form.text_area :general_information, disabled: !editable, class: 'form-control'
+    = country_form.text_area :general_information, disabled: !editable, class: 'form-control textarea_wysihtml'
 
   .form-group
     .map.map_fixed-height

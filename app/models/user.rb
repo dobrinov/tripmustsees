@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+
+  # Associations
+  belongs_to :countries
+  belongs_to :cities
+  belongs_to :locations
+
   def self.from_omniauth(auth)
     where(provider: auth['provider'], uid: auth['uid']).first || create_from_omniauth(auth)
   end

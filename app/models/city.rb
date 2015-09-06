@@ -5,6 +5,7 @@ class City < ActiveRecord::Base
 
   # Associations
   belongs_to :country
+  belongs_to :user
   has_many :locations, dependent: :destroy
 
   # Validations

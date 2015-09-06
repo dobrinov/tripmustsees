@@ -1,5 +1,8 @@
 = form_for [:admin, country, city, location] do |location_form|
 
+  - unless location.persisted?
+    = location_form.hidden_field :user_id, { value: current_user.id }
+
   .form-group
     = location_form.label :name
     = location_form.text_field :name, disabled: !editable, class: 'form-control'
@@ -14,11 +17,11 @@
 
   .form-group
     = location_form.label :description
-    = location_form.text_area :description, disabled: !editable, class: 'form-control'
+    = location_form.text_area :description, disabled: !editable, class: 'form-control textarea_wysihtml'
 
   .form-group
     = location_form.label :history
-    = location_form.text_area :history, disabled: !editable, class: 'form-control'
+    = location_form.text_area :history, disabled: !editable, class: 'form-control textarea_wysihtml'
 
   .form-group
     = location_form.label :website
@@ -28,9 +31,9 @@
     .map.map_fixed-height
       .map__backsight
       .map__canvas {
-                      data-lat="#{location.latitude}"
-                      data-lng="#{location.longitude}"
-                      data-zoom="#{location.default_zoom_level}"
+                      data-lat="#{city.latitude}"
+                      data-lng="#{city.longitude}"
+                      data-zoom="#{city.default_zoom_level}"
                       data-draggable="#{editable}"
                       data-zoomable="#{editable}"
                     }

@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
+  def requires_login
+    redirect_to signin_path(referrer_param => current_path) unless logged_in?
+  end
+
   def current_user
     @_current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

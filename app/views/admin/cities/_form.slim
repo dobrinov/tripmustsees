@@ -1,5 +1,8 @@
 = form_for [:admin, country, city] do |city_form|
 
+  - unless city.persisted?
+    = city_form.hidden_field :user_id, { value: current_user.id }
+
   .form-group
     = city_form.label :name
     = city_form.text_field :name, disabled: !editable, class: 'form-control'
@@ -18,15 +21,15 @@
 
   .form-group
     = city_form.label :general_information
-    = city_form.text_area :general_information, disabled: !editable, class: 'form-control'
+    = city_form.text_area :general_information, disabled: !editable, class: 'form-control textarea_wysihtml'
 
   .form-group
     .map.map_fixed-height
       .map__backsight
       .map__canvas {
-                      data-lat="#{city.latitude}"
-                      data-lng="#{city.longitude}"
-                      data-zoom="#{city.default_zoom_level}"
+                      data-lat="#{country.latitude}"
+                      data-lng="#{country.longitude}"
+                      data-zoom="#{country.default_zoom_level}"
                       data-draggable="#{editable}"
                       data-zoomable="#{editable}"
                     }

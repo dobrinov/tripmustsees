@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $('textarea').each(function(i, elem) {
+  $('textarea.textarea_wysihtml').each(function(i, elem) {
     $(elem).wysihtml5();
   });
 

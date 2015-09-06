@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   # Associations
   belongs_to :city
   belongs_to :location_category
+  belongs_to :user
 
   # Validations
   validates :name, presence: true

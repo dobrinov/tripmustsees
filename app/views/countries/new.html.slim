@@ -1,0 +1,34 @@
+.row
+  .col-sm-6
+    h1 Add a country
+    p Contribute to tripmustsees.com by adding a missing country.
+
+= form_for @country do |f|
+  .row
+    .col-sm-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, placeholder: 'What is the name of the country?', class: 'form-control'
+
+  .row
+    .col-sm-6
+      .form-group
+        = label_tag 'Location'
+        p Drag, drop and zoom until you mark the country name on the map with the red circle.
+        .map.map_fixed-height
+          .map__backsight
+          .map__canvas {
+                          data-lat="#{@country.latitude}"
+                          data-lng="#{@country.longitude}"
+                          data-zoom="#{@country.default_zoom_level}"
+                          data-draggable="true"
+                          data-zoomable="true"
+                        }
+
+          = f.text_field :latitude, class: 'map__input map__input_lat'
+          = f.text_field :longitude, class: 'map__input map__input_lng'
+          = f.text_field :default_zoom_level, class: 'map__input map__input_zoom-level'
+  .row
+    .col-sm-6
+      .form-group
+        = f.submit 'Add country', class: 'btn btn-primary'

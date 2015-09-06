@@ -59,8 +59,7 @@ module Admin
 
     def location_params
       if params[:location].present?
-        params[:location].permit(
-                                 :name,
+        params[:location].permit(:name,
                                  :slug,
                                  :description,
                                  :history,
@@ -68,7 +67,8 @@ module Admin
                                  :latitude,
                                  :longitude,
                                  :default_zoom_level,
-                                 :location_category_id
+                                 :location_category_id,
+                                 :user_id
                                 )
       else
         {}

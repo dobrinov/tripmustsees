@@ -52,7 +52,7 @@ html class="no-js"
             li = link_to 'Explore', countries_path
 
             - if logged_in?
-              li = link_to 'Logout', signout_path, :method => :delete
+              li = link_to 'Sign out', signout_path, :method => :delete
 
     main.body
       - if content_for?(:side_panel_right)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503221007) do
+ActiveRecord::Schema.define(version: 20150906222017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150503221007) do
     t.boolean  "published",           default: false
     t.boolean  "capital",             default: false
     t.integer  "population"
+    t.integer  "user_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150503221007) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "general_information"
+    t.integer  "user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -73,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150503221007) do
     t.text     "description"
     t.text     "history"
     t.string   "website"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

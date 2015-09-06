@@ -58,7 +58,8 @@ module Admin
                              :general_information,
                              :capital,
                              :published,
-                             :population
+                             :population,
+                             :user_id
                             )
       else
         {}
