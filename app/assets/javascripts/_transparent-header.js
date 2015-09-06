@@ -37,11 +37,11 @@
     self.full_screen_image_height = self.marker.height();
     self.header_height = self.node.outerHeight();
 
-    $(window).on( "resize", function(e){
+    $(window).on( "resize", function(){
       self.full_screen_image_height = self.marker.height();
     });
 
-    $(window).on( "scroll", function(e){
+    $(window).on( "scroll", function(){
       var current_scroll_position = $(this).scrollTop();
 
       if(current_scroll_position < self.full_screen_image_height - self.header_height){
@@ -52,14 +52,14 @@
       ){
         console.log('move header up');
         self.node.addClass('header_transparent');
-        self.node.css('top', -(current_scroll_position - (self.full_screen_image_height - self.header_height)))
+        self.node.css('top', -(current_scroll_position - (self.full_screen_image_height - self.header_height)));
       } else if(
           current_scroll_position >= self.full_screen_image_height &&
           current_scroll_position < self.full_screen_image_height + self.header_height
       ){
         console.log('move header down');
         self.node.removeClass('header_transparent');
-        self.node.css('top', current_scroll_position - (self.full_screen_image_height + self.header_height))
+        self.node.css('top', current_scroll_position - (self.full_screen_image_height + self.header_height));
       } else if(
           current_scroll_position >= self.full_screen_image_height + self.header_height
       ){
