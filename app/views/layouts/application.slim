@@ -34,13 +34,25 @@ html class="no-js"
     title = title
 
   body
-    header.header
+    header.header class="#{'header_transparent' if header_transparent?}"
       .container-fluid
-        = link_to root_path, class: 'logo logo_navigation' do
-          = image_tag 'logo_450x104.png', alt: 'TripMustSees', class: 'logo__image'
+        .navbar-header
+          button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
 
-        - if logged_in?
-          = link_to 'Logout', signout_path, :method => :delete
+          = link_to root_path, class: 'logo logo_navigation' do
+            = image_tag 'logo_450x104_white.png', alt: 'TripMustSees', class: 'logo__image logo__image_light'
+            = image_tag 'logo_450x104.png', alt: 'TripMustSees', class: 'logo__image logo__image_dark'
+
+        nav#main-navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li = link_to 'Explore', countries_path
+
+            - if logged_in?
+              li = link_to 'Logout', signout_path, :method => :delete
 
     main.body
       - if content_for?(:side_panel_right)

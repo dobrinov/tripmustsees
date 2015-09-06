@@ -1,5 +1,5 @@
 /*!
- * Map jQuery plugin
+ * Fullscreen image jQuery plugin
  * Author: Deyan Dobrinov
  */
 

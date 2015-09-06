@@ -1,0 +1,26 @@
+// Change the default style of the navbar when in transparent header;
+.header_transparent {
+  // .nav {
+  //   &.navbar-nav {
+  //     li {
+  //       a {
+  //         background-color: transparent;
+
+  //         &:hover {
+  //           background-color: transparent;
+  //           text-decoration: underline;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  .navbar-collapse.collapse {
+    &.in {
+      background-color: $color_white;
+      .nav.navbar-nav {
+        margin: 0px -15px;
+      }
+    }
+  }
+}

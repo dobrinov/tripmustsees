@@ -1,0 +1,31 @@
+.header_transparent {
+  border-bottom: none;
+  background-color: transparent;
+
+  .navbar-collapse.collapse {
+    a {
+      color: $color_white;
+      &:hover {
+        color: $color_dark_gray;
+      }
+    }
+
+    &.in {
+      a {
+        color: $color_dark_gray;
+      }
+    }
+  }
+
+  .logo__image_dark {
+    display: none;
+  }
+
+  .logo__image_light {
+    display: block;
+  }
+
+  .icon-bar {
+    background-color: $color_white;
+  }
+}

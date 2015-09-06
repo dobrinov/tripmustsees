@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     @_current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def header_transparent!
+    @_header_transparent = true
+  end
+
   def load_additional_javascript(script_attributes)
     @_additional_javascripts ||= []
     @_additional_javascripts << script_attributes

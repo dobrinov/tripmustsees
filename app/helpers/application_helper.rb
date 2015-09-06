@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def header_transparent?
+    @_header_transparent.present?
+  end
+
   def additional_javascripts
     @_additional_javascripts || []
   end

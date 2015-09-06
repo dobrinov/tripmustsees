@@ -22,7 +22,7 @@ p Explore the beautiful locations available at the Tripmustsees database.
 - if @countries.any?
   .row
     - @countries.each do |country|
-      .col-sm-4
+      .col-sm-3
         = link_to country_slug_path(country_slug: country.slug), class: 'card card_country' do
           .card__image = image_tag country.primary_image.file.url(:medium)
           .card__title = country.name

@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
   def landingpage
     @countries = Country.all.order(name: :asc)
 
+    header_transparent!
     mixpanel_track_landing_page_view
   end
 

@@ -12,4 +12,5 @@
   background-color: $color_pale_gray;
   @include border-radius(6px);
   @include box-sizing(border-box);
+  @include box-shadow($color_medium_gray 0px 0px 1px);
 }
